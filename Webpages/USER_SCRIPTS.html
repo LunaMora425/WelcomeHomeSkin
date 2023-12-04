@@ -1,0 +1,62 @@
+<script>
+	/* Toggle Mobile Menu */
+	document.querySelector('.button-action').addEventListener('click', () => {
+		document.getElementById('mobile-userlinks').classList.toggle('display-menu');
+		document.querySelector('.rotate').classList.toggle('down');
+	});
+</script>
+<script>
+	/* Scroll to top & scroll to bottom */
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
+	function scrollToBottom() {
+		document.getElementById('boardstats').scrollIntoView({ behavior: 'smooth' });
+	}
+</script>
+<script>
+	/* Light Mode Toggle, from CodePen
+	 * https://codepen.io/ananyaneogi/pen/zXZyMP
+	 * heavily modified by Luna for WH */
+	const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+	const currentTheme = localStorage.getItem('theme');
+	const darkModeText = `Dark <i class="fa-regular fa-moon icons"></i>`;
+	const lightModeText = `Light <i class="fa-regular fa-sun icons"></i>`;
+
+	// on first page load, default to dark theme if no theme selected, otherwise initialize light mode
+	if (!currentTheme) {
+		localStorage.setItem('theme', 'dark');
+		document.body.setAttribute('data-theme', 'dark');
+	} else if (currentTheme === 'light') {
+		document.querySelector('.mode-text-1').innerHTML = darkModeText;
+	} else {
+		document.querySelector('.mode-text-1').innerHTML = lightModeText;
+	}
+
+	if (currentTheme) {
+		document.documentElement.setAttribute('data-theme', currentTheme);
+		document.body.setAttribute('data-theme', currentTheme);
+
+		if (currentTheme === 'light') {
+			toggleSwitch.checked = true;
+			document.querySelector('.mode-text-1').innerHTML = darkModeText;
+		} else {
+			document.querySelector('.mode-text-1').innerHTML = lightModeText;
+		}
+	}
+
+	function switchTheme(e) {
+		const theme = e.target.checked ? 'light' : 'dark';
+		const themeText = theme === 'light' ? darkModeText : lightModeText;
+
+		document.documentElement.setAttribute('data-theme', theme);
+		document.body.setAttribute('data-theme', theme);
+		localStorage.theme = theme;
+		document.querySelector('.mode-text-1').innerHTML = themeText;
+	}
+
+	toggleSwitch.addEventListener('change', switchTheme, false);
+</script>
+<script>
+	$('#newbie').appendTo('#newbie-clip');
+</script>
