@@ -1,0 +1,703 @@
+<script>
+	/* Toggle Mobile Menu */
+	document.querySelector('.button-action').addEventListener('click', () => {
+		document.getElementById('mobile-userlinks').classList.toggle('display-menu');
+		document.querySelector('.rotate').classList.toggle('down');
+	});
+</script>
+<script>
+	/* Scroll to top & scroll to bottom */
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
+	function scrollToBottom() {
+		document.getElementById('copyright').scrollIntoView({ behavior: 'smooth' });
+	}
+</script>
+<script>
+	/* Light Mode Toggle, from CodePen
+	 * https://codepen.io/ananyaneogi/pen/zXZyMP
+	 * heavily modified by Luna for WH */
+	const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+	const currentTheme = localStorage.getItem('theme');
+	const darkModeText = `Dark <i class="fa-regular fa-moon icons"></i>`;
+	const lightModeText = `Light <i class="fa-regular fa-sun icons"></i>`;
+
+	// on first page load, default to dark theme if no theme selected, otherwise initialize light mode
+	if (!currentTheme) {
+		localStorage.setItem('theme', 'dark');
+		document.body.setAttribute('data-theme', 'dark');
+	} else if (currentTheme === 'light') {
+		document.querySelector('.mode-text-1').innerHTML = darkModeText;
+	} else {
+		document.querySelector('.mode-text-1').innerHTML = lightModeText;
+	}
+
+	if (currentTheme) {
+		document.documentElement.setAttribute('data-theme', currentTheme);
+		document.body.setAttribute('data-theme', currentTheme);
+
+		if (currentTheme === 'light') {
+			toggleSwitch.checked = true;
+			document.querySelector('.mode-text-1').innerHTML = darkModeText;
+		} else {
+			document.querySelector('.mode-text-1').innerHTML = lightModeText;
+		}
+	}
+
+	function switchTheme(e) {
+		const theme = e.target.checked ? 'light' : 'dark';
+		const themeText = theme === 'light' ? darkModeText : lightModeText;
+
+		document.documentElement.setAttribute('data-theme', theme);
+		document.body.setAttribute('data-theme', theme);
+		localStorage.theme = theme;
+		document.querySelector('.mode-text-1').innerHTML = themeText;
+	}
+
+	toggleSwitch.addEventListener('change', switchTheme, false);
+</script>
+<script>
+	/* clip various div ids and move them to new positions */
+	$('#newbie').appendTo('#newbie-clip');
+	$('#recent-topics').appendTo('#stats-recent-topics');
+	$('#delcookiesrow').appendTo('#delete-cookies');
+	$('#cat_2').appendTo('#graveyard');
+	$('#inforum-rules').appendTo('#fr-clip');
+</script>
+<script>
+	/* Replaces the default Jcink Search Page with a CSS Grid layout */
+
+	if ($('body').attr('id') === 'Search' && $('body').hasClass('code-00')) {
+		window.onload = function () {
+			const originalSelect = document.querySelector('select[name="forums[]"]');
+			const newSelect = document.createElement('select');
+			newSelect.name = originalSelect.name;
+			newSelect.className = originalSelect.className;
+			newSelect.multiple = originalSelect.multiple;
+			originalSelect.childNodes.forEach(function (option, index) {
+				if (option.nodeType === Node.ELEMENT_NODE && option.tagName === 'OPTION') {
+					const newOption = document.createElement('option');
+					newOption.value = option.value;
+					newOption.text = option.text;
+					newOption.form = option.form;
+					newOption.class = option.class;
+					if (option.value === 'all') {
+						newOption.selected = option.selected;
+						newOption.defaultSelected = option.defaultSelected;
+					}
+					newSelect.appendChild(newOption);
+				}
+			});
+
+			document.querySelector('form[name="sForm"]').innerHTML = `
+			<form action="/index.php?act=Search&CODE=01" method="post" name="sForm" onsubmit='document.getElementById("perf_search").disabled="true"'><div id="search-grid"><div class="keyword-search-heading"><div class="maintitle">Search Keywords</div></div><div class="keyword-search"><div class="pformstrip">search by keywords</div><input type="text" maxlength="100" name="keywords" id="keywords" class="forminput"><div><label for="keywords">Enter a keyword or phrase to search by.</label>[<a href="#" title="Find out how to improve your search with boolean operators" onclick="win_pop()">Advanced Usage Help</a>]</div></div><div class="member-search"><div class="pformstrip">filter by member name (optional)</div><input type="text" maxlength="100" name="namesearch" class="forminput"><div><input type="checkbox" name="matchtopics" id="matchtopics" value="1" class="checkbox"><label for="matchtopics">Search topics started by this member only</label></div></div><div class="search-options-heading"><div class="maintitle">Search Options</div></div><div class="search-where"><div class="pformstrip">search where</div>${newSelect.outerHTML}<div><input type="checkbox" name="searchsubs" value="1" id="searchsubs" checked="checked"><label for="searchsubs">Search in child forums if sub category is chosen?</label></div></div><div class="refine-search"><div class="pformstrip">refine search</div><div class="fieldset-search-box"><fieldset class="search"><legend><strong>Search posts from...</strong></legend><select name="prune" class="forminput"><option value="1">Today</option><option value="7">7 days ago and...</option><option value="30">30 days ago and...</option><option value="60">60 days ago and...</option><option value="90">90 days ago and...</option><option value="180">180 days ago and...</option><option value="365">365 days ago and...</option><option value="0" selected="selected">Any date</option></select><div><label><input type="radio" name="prune_type" id="prune_older" value="older" class="radiobutton"> Older</label></div><div><label><input type="radio" name="prune_type" id="prune_newer" value="newer" class="radiobutton" checked="checked"> Newer</label></div></fieldset></div><div class="fieldset-search-box"><fieldset class="search"><legend><strong>Sort results by...</strong></legend><select name="sort_key" class="forminput"><option value="last_post">Last Posting Date</option><option value="posts">Number of Replies</option><option value="starter_name">Poster Name</option><option value="forum_id">Forum Name</option></select><div><label><input type="radio" name="sort_order" id="sort_desc" class="radiobutton" value="desc" checked="checked"> descending order</label></div><div><label><input type="radio" name="sort_order" id="sort_asc" class="radiobutton" value="asc"> ascending order</label></div></fieldset></div><div class="fieldset-search-box"><fieldset class="search"><legend><strong>Search Where</strong></legend><div><label><input type="radio" name="search_in" class="radiobutton" id="search_in_posts" value="posts" checked="checked"> Search entire post</label></div><div><label><input type="radio" name="search_in" class="radiobutton" id="search_in_titles" value="titles"> Search titles only</label></div></fieldset></div><div class="fieldset-search-box"><fieldset class="search"><legend><strong>Result Type</strong></legend><div><label><input type="radio" name="result_type" class="radiobutton" value="topics" id="result_topics" checked="checked"> Show results as topics</label></div><div><label><input type="radio" name="result_type" class="radiobutton" value="posts" id="result_posts"> Show results as posts</label></div></fieldset></div></div><div class="submit-search-form"><input type="submit" value="Perform the search" class="forminput" id="perf_search" onclick='document.getElementById("perf_search").value="Peforming search... please wait"'></div></div></form>
+			`;
+		};
+	}
+</script>
+<script>
+	/* Custom UCP Menu, base by Lux
+	 * https://github.com/DawnEggleton/JcinkSkinTemplate/blob/main/source/js/defaultsMenus.js */
+
+	if ($('body#UserCP').length > 0 && $('body').hasClass('p_0')) {
+		document.querySelector('#ucpmenu').innerHTML = `
+		<div class=maintitle>Player Menu</div><div class=outer-grid><div class=outer-grid-item><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=54">Manage Characters</a> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-2><b class=ucp-heading>Tracking</b> <a href="?act=UserCP&CODE=alerts">Alerts</a> <a href="?act=UserCP&CODE=50">Forums</a> <a href="?act=UserCP&CODE=26">Topics</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
+		`;
+	} else if ($('body#UserCP').length > 0) {
+		document.querySelector('#ucpmenu').innerHTML = `
+		<div class=maintitle>Character Menu</div><div class=outer-grid-2><div class=outer-grid-item-1><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
+		`;
+	}
+</script>
+<script>
+	/* Custom Messages Menu, base by Lux
+	 * https://github.com/DawnEggleton/JcinkSkinTemplate/blob/main/source/js/defaultsMenus.js */
+
+	if ($('body#Msg').length > 0) {
+		document.querySelector('#ucpmenu').innerHTML = `
+		<div class="maintitle">Menu</div><div class="outer-grid"><div class="outer-grid-item"><b class="ucp-heading">Inbox</b><a href="?act=Msg&CODE=04">Compose New Message</a><a href="?act=Msg&CODE=01">Go to Inbox</a><a href="?act=Msg&CODE=01&VID=sent"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i>Sent Items</a><a href="?act=Msg&CODE=20">Saved (Unsent) PMs</a><a href="?act=Msg&CODE=30">Message Tracker</a></div><div class="outer-grid-item"><b class="ucp-heading">Settings</b><a href="javascript:window.open('index.php?showuser=<!-- |id| -->&CODE=friends','Friends','width=620,height=460,resizable=yes,scrollbars=yes');void(0);">My Friends/Contacts</a><a href="?act=Msg&CODE=delete">Empty PM Folders</a><a href="?act=Msg&CODE=07">Edit Storage Folders</a><a href="?act=Msg&CODE=14">Archive Messages</a></div><div class="outer-grid-item"><b class="ucp-heading">User CP</b><a href="?act=UserCP&CODE=00">Home & Settings</a></div></div>
+		`;
+	}
+</script>
+<script>
+	/* Set Mini Profile by account type */
+
+	if ($('body#ST').length > 0) {
+		const charMiniProfiles = document.querySelectorAll('.mini-p-1');
+		const playerMiniProfiles = document.querySelectorAll('.mini-p-2');
+
+		charMiniProfiles.forEach((charMiniProfile) => {
+			if (charMiniProfile.classList.contains('p_0')) {
+				charMiniProfile.classList.add('hide-profile');
+			}
+		});
+
+		playerMiniProfiles.forEach((playerMiniProfile) => {
+			if (playerMiniProfile.classList.contains('p_0')) {
+				playerMiniProfile.classList.remove('hide-profile');
+			}
+		});
+	}
+
+	/* Set Main Profile by account type */
+
+	if ($('body#Profile').length > 0) {
+		const profileClass = document.getElementById('main-profile-grid-wrapper');
+
+		if (!profileClass.classList.contains('p_0')) {
+			const elementToHide = document.getElementById('OOC');
+			const mainTitle = document.querySelector('.maintitle');
+			elementToHide.classList.add('hide-profile');
+			mainTitle.classList.add('hide-profile');
+		} else if (profileClass.classList.contains('p_0')) {
+			const elementToHide = document.getElementById('IC');
+			elementToHide.classList.add('hide-profile');
+		}
+	}
+
+	/* Set Secret Staff Zone viewable only to staff and player */
+
+	if ($('body#Profile').length > 0) {
+		const profileClass = document.getElementById('main-profile-grid-wrapper');
+		const body = document.querySelector('body');
+
+		const bodyMemberId = Array.from(body.classList)
+			.find((cls) => cls.startsWith('m_'))
+			.substring(2);
+		const bodyParentId = Array.from(body.classList)
+			.find((cls) => cls.startsWith('p_'))
+			.substring(2);
+		const profileClassMemberId = Array.from(profileClass.classList)
+			.find((cls) => cls.startsWith('m_'))
+			.substring(2);
+		const profileClassParentId = Array.from(profileClass.classList)
+			.find((cls) => cls.startsWith('p_'))
+			.substring(2);
+
+		const isStaff = body.classList.contains('g_4');
+		const isMyProfile = bodyMemberId === profileClassMemberId;
+		const isMyCharacter = bodyMemberId === profileClassParentId;
+		const weShareParent = bodyParentId !== '0' && bodyParentId === profileClassParentId;
+		const elementToHide = document.querySelector('.secret-staff-info');
+
+		if (isStaff || isMyProfile || isMyCharacter || weShareParent) {
+			elementToHide.classList.remove('hide-profile');
+		}
+	}
+
+	/* Remove purchases area if not filled in */
+
+	if ($('body#Profile').length > 0) {
+		$('.remove:contains("No Information")').each(function () {
+			$(this).prev('span').remove();
+			$(this).remove();
+		});
+	}
+
+	/* Set Member List by account type */
+
+	if ($('body#Members').length > 0) {
+		const charMemberRows = document.querySelectorAll('.char-ver');
+		const playerMemberRows = document.querySelectorAll('.play-ver');
+
+		charMemberRows.forEach((charMemberRow) => {
+			if (charMemberRow.classList.contains('p_0')) {
+				charMemberRow.classList.add('hide-profile');
+			}
+		});
+
+		playerMemberRows.forEach((playerMemberRow) => {
+			if (playerMemberRow.classList.contains('p_0')) {
+				playerMemberRow.classList.remove('hide-profile');
+			}
+		});
+	}
+</script>
+
+<script>
+	/* Customized Profile Fields within UserCP */
+
+	if ($('body#UserCP.code-01').length > 0) {
+		const body = document.querySelector('body');
+
+		$(document).ready(function () {
+			const firstPformstrip = $('form[name="theForm"] .pformstrip:first');
+			firstPformstrip.html(`
+			<div class="maintitle">Player Profile Fields</div>
+    		`);
+			firstPformstrip.after(`
+			<div class="pformstrip">Please fill in your player information.<br/><i>Note: This information will auto-fill on any characters you create through the \'Manage Characters\' link.</i></div>
+			`);
+
+			const specificText = 'Your personal profile, this section is optional';
+			$('form[name="theForm"] .pformstrip:contains("' + specificText + '")').remove();
+
+			const field5 = $('form[name="theForm"] tr#field_5');
+			field5.after(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Graphics Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">Graphics for your main profile.</td></tr>
+			`);
+			const field6 = $('form[name="theForm"] tr#field_6');
+			field6.after(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Character Profile Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">Please fill in your character profile information.</td>
+				<tr><td class="pformstrip" colspan="2"><i>The information you enter for your character under the application is up to you--you can tell us as much or as little about your character as you'd like. You can even lie.
+				<br>Think about your character profile as public knowledge about your character. If your character has secrets, you are allowed to protect them. But secrets can be hard to keep.</i>
+				<tr><td class="pformstrip" colspan="2">For detailed instructions, please see our <a href="?act=Pages&pid=3#tabs-11">GUIDEBOOK</a>.</td></tr>
+			`);
+
+			const field21 = $('form[name="theForm"] tr#field_21');
+			field21.before(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Plot Hook Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">You can have up to THREE plot hooks listed for your character.</td></tr>
+			`);
+
+			const field19 = $('form[name="theForm"] tr#field_19');
+			field19.before(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Secret Staff Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">The information in this section is visible ONLY to you and Staff.</td></tr>
+			`);
+
+			setTimeout(function () {
+				const tables = $('form table');
+				const firstTable = tables[0];
+				const pformstrips = $('form .pformstrip');
+				const secondTable = tables[1];
+				var rows = secondTable.querySelectorAll('tr');
+				if ($('body').hasClass('p_0')) {
+					for (var i = 9; i < 41; i++) {
+						rows[i].classList.add('hide-profile');
+					}
+				} else {
+					pformstrips.eq(0).addClass('hide-profile');
+					pformstrips.eq(1).addClass('hide-profile');
+					firstTable.classList.add('hide-profile');
+					rows[4].classList.add('hide-profile');
+					rows[5].classList.add('hide-profile');
+				}
+			}, 0);
+		});
+	}
+</script>
+<script>
+	editProfileInfoInheritFields({
+		force_inherit_fields: [1, 2, 3, 4, 5],
+	});
+</script>
+<script>
+	/* Hide non-staff pages of the IBStore */
+
+	if ($('body#store').length > 0) {
+		const body = document.querySelector('body');
+
+		const isStaff = body.classList.contains('g_4');
+
+		// Select all <a> tags
+		var links = document.querySelectorAll('a');
+
+		if (!isStaff) {
+			// Iterate over the links
+			for (var i = 0; i < links.length; i++) {
+				// If the href attribute contains "category=2" or "category=3"
+				if (links[i].href.includes('category=2') || links[i].href.includes('category=3')) {
+					links[i].classList.add('hide-profile');
+
+					if (links[i].parentNode.parentElement.tagName === 'TR') {
+						// Add 'hide-profile' class to the <tr> element
+						links[i].parentNode.parentElement.classList.add('hide-profile');
+					}
+				}
+			}
+		}
+	}
+</script>
+<script>
+	/* JCINK CODE AREA MODIFICATION v2 BY JAWN
+	https://backtoneverland.jcink.net/
+	updated by Luna */
+
+	if ($('td#CODE').length > 0) {
+		$(function () {
+			$('td#CODE').each(function () {
+				$(this).find('br').replaceWith('\n');
+
+				$(this).wrapInner("<div class='code-inner'/>");
+				$(this).wrap("<fieldset id='code-wrapper'/>");
+				$(this).parent().append('<legend>Highlight Code</legend>');
+			});
+		});
+		$(function () {
+			$('fieldset#code-wrapper legend').click(function () {
+				var range = document.createRange();
+				range.selectNode($(this).siblings('td').children('.code-inner')[0]);
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(range);
+			});
+		});
+	}
+</script>
+
+<script>
+	/* Secrets BBCode box, formatted so you and staff can view your own, but no one else's */
+	if ($('body#ST').length > 0 && document.querySelector('.post-secrets-area')) {
+		const postSecretsAreas = document.querySelectorAll('.post-secrets-area');
+		postSecretsAreas.forEach((postSecretsArea) => {
+			const miniProfileParentClass1 = postSecretsArea.closest('.post-wrapper').querySelector('.mini-p-1');
+			const postRowMemberClass = postSecretsArea.closest('.post-wrapper');
+			const body = document.querySelector('body');
+
+			const bodyMemberId = Array.from(body.classList)
+				.find((cls) => cls.startsWith('m_'))
+				.substring(2);
+			const bodyParentId = Array.from(body.classList)
+				.find((cls) => cls.startsWith('p_'))
+				.substring(2);
+			const miniProfileParentId = Array.from(miniProfileParentClass1.classList)
+				.find((cls) => cls.startsWith('p_'))
+				.substring(2);
+			const postRowMemberId = Array.from(postRowMemberClass.classList)
+				.find((cls) => cls.startsWith('m_'))
+				.substring(2);
+
+			const isStaff = body.classList.contains('g_4');
+			const isPoster = bodyMemberId === postRowMemberId;
+			const isMyPlayer = bodyParentId === postRowMemberId;
+			const isMyCharacter = bodyMemberId === miniProfileParentId;
+			const weShareParent = bodyParentId !== '0' && bodyParentId === miniProfileParentId;
+
+			const hiddenSecretArea = postSecretsArea.querySelector('.secret-text-display');
+			const visibleSecretArea = postSecretsArea.querySelector('.not-secret-display');
+
+			if (isStaff || isPoster || isMyPlayer || isMyCharacter || weShareParent) {
+				hiddenSecretArea.classList.remove('hide-profile');
+				visibleSecretArea.classList.add('hide-profile');
+			}
+		});
+	}
+</script>
+<script>
+	/* Custom Home Map */
+	// initialize empty map top level so all guidebook pages have access
+	var map;
+	if ($('body#Pages.act-Pages').length > 0) {
+		// map designs
+		const baseMapURL = 'https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/town_map_interactive_final.png';
+		const houseURL = 'https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/map_home.png';
+		const jobURL = 'https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/map_job.png';
+		const parkURL = 'https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/map_park.png';
+
+		const communeBorder = L.polygon(
+			[
+				[2922, 2660],
+				[2922, 2887.809677],
+				[1374, 2887.809677],
+				[1374, 2660],
+			],
+			{ color: '#7f4559', fillOpacity: 0.3 },
+		);
+
+		const townSquareBorder = L.polygon(
+			[
+				[2320, 3191.96646],
+				[2320, 3639.63851],
+				[1978.4318245, 3639.63851],
+				[1978.4318245, 3191.96646],
+			],
+			{ color: '#bfe0dc' },
+		);
+
+		const noMansLandBorder = L.polygon(
+			[
+				[2922, 2890],
+				[2922, 3039.75],
+				[1374, 3039.75],
+				[1374, 2890],
+			],
+			{ color: '#dabb69', fillOpacity: 0.3 },
+		);
+
+		const hangingGardensBorder = L.polygon(
+			[
+				[1766, 3038],
+				[1766, 3191.780909],
+				[1372.43, 3191.780909],
+				[1372.43, 3038],
+			],
+			{ color: '#96d83a', fillOpacity: 0.5 },
+		);
+
+		const packingDistrictBorder = L.polygon(
+			[
+				[2522.25, 3131.646683],
+				[2518.795471, 3247.563257],
+				[2324.795471, 3247.563257],
+				[2320, 3191.96646],
+				[2166.795471, 3191.603531],
+				[2164.795471, 3131.646683],
+			],
+			{ color: '#8ccabf', fillOpacity: 0.3 },
+		);
+
+		const commune = L.layerGroup([communeBorder]);
+		const townSquare = L.layerGroup([townSquareBorder]);
+		const noMansLand = L.layerGroup([noMansLandBorder]);
+		const hangingGardens = L.layerGroup([hangingGardensBorder]);
+		const packingDistrict = L.layerGroup([packingDistrictBorder]);
+
+		// resident houses
+		const houses = L.layerGroup();
+
+		const houseIcon = createSmallIconOptions(houseURL);
+
+		const houseOptions = createMarkerOptions('Residence', houseIcon);
+
+		const mLeyla = L.marker([2074, 2712], houseOptions)
+			.bindPopup(`<b>House # 12</b><p>Residents:</p><ul><li>Saint Leyla</li></ul>`)
+			.addTo(houses);
+		const mDavisTwins = L.marker([1722, 3059], houseOptions)
+			.bindPopup(`<b>House # 696</b><p>Residents:</p><ul><li>Cheyenne Davis</li><li>Cheryl Davis</li></ul>`)
+			.addTo(houses);
+		const mBunkBoys = L.marker([2026, 2713], houseOptions)
+			.bindPopup(
+				`<b>House # 13</b><p>Residents:</p><ul><li>Bryn Kane</li><li>Feiyu Li</li><li>Milo Morrow (Missing)</li></ul>`,
+			)
+			.addTo(houses);
+		const mFainaVale = L.marker([2768, 3669], houseOptions)
+			.bindPopup(`<b>House # 194</b><p>Residents:</p><ul><li>Valerian Ellis</li><li>Faina Parker</li></ul>`)
+			.addTo(houses);
+		const mDave = L.marker([1642, 3517], houseOptions)
+			.bindPopup(`<b>House # 1991</b><p>Residents:</p><ul><li>Dave Matthews</li></ul>`)
+			.addTo(houses);
+		const mBaileyAndrew = L.marker([2888, 4123], houseOptions)
+			.bindPopup(`<b>House # 613</b><p>Residents:</p><ul><li>Bailey Harkwood</li><li>Andrew Ellis</li></ul>`)
+			.addTo(houses);
+		const mGabe = L.marker([2108.795471, 3015.571887], houseOptions)
+			.bindPopup(`<b>House # 666</b><p>Residents:</p><ul><li>Gabriel de la Cour</li></ul>`)
+			.addTo(houses);
+		const mDoe = L.marker([1408, 3623], houseOptions)
+			.bindPopup(`<b>House # 888</b><p>Residents:</p><ul><li>John Doe</li></ul>`)
+			.addTo(houses);
+		const mSylviaMinoru = L.marker([1404.8125, 4078], houseOptions)
+			.bindPopup(`<b>House # 123</b><p>Residents:</p><ul><li>Sylvia Faraji</li><li>Minoru Kubo</li></ul>`)
+			.addTo(houses);
+		const mHarry = L.marker([1956.8125, 3364], houseOptions)
+			.bindPopup(`<b>House # 278</b><p>Residents:</p><ul><li>Harry Harris</li></ul>`)
+			.addTo(houses);
+		const mKimDahlia = L.marker([2448.8125, 3776], houseOptions)
+			.bindPopup(`<b>House # 8675</b><p>Residents:</p><ul><li>Kim Chaoreum</li><li>Dahlia Cappernici</li></ul>`)
+			.addTo(houses);
+		const mDzifaYuna = L.marker([2886.8125, 2760], houseOptions)
+			.bindPopup(`<b>House # 22</b><p>Residents:</p><ul><li>Dzifa Appiah</li><li>Yuna Adalheidis</li></ul>`)
+			.addTo(houses);
+		const mDimitri = L.marker([2574.8125, 3768], houseOptions)
+			.bindPopup(`<b>House # 69</b><p>Residents:</p><ul><li>Dimitri van Leeuwen</li></ul>`)
+			.addTo(houses);
+		const mMagda = L.marker([2574.795471, 3517.487023], houseOptions)
+			.bindPopup(`<b>House # 99</b><p>Residents:</p><ul><li>Magdalena Silva</li></ul>`)
+			.addTo(houses);
+		const mLady = L.marker([1488.28125, 2759.860015], houseOptions)
+			.bindPopup(`<b>House # 339</b><p>Residents:</p><ul><li>Lady Grave</li><li>2 NPCs</li></ul>`)
+			.addTo(houses);
+		const mHarlan = L.marker([2608.28126, 4130.215934], houseOptions)
+			.bindPopup(`<b>House # 62</b><p>Residents:</p><ul><li>Harlan Guillaume</li></ul>`)
+			.addTo(houses);
+		const mAlex = L.marker([2460.8125, 3671], houseOptions)
+			.bindPopup(
+				`<b>House # 87</b><p>Residents:</p><ul><li>Alexandra Moller</li><li>Rebecca Aguilar (Missing)</li></ul>`,
+			)
+			.addTo(houses);
+		const mJulian = L.marker([2106.795471, 3165.976071], houseOptions)
+			.bindPopup(`<b>House # 232</b><p>Residents:</p><ul><li>Julian Clay</li></ul>`)
+			.addTo(houses);
+		const mRoman = L.marker([2572.795471, 4125.246814], houseOptions)
+			.bindPopup(`<b>House # 64</b><p>Residents:</p><ul><li>Roman Sadovsky</li></ul>`)
+			.addTo(houses);
+		const mYuta = L.marker([2614.795471, 3165.557503], houseOptions)
+			.bindPopup(`<b>House # 127</b><p>Residents:</p><ul><li>Yuta Tsukiyama</li></ul>`)
+			.addTo(houses);
+		const mErzaMatti = L.marker([1945.233337, 3929], houseOptions)
+			.bindPopup(`<b>House # 772</b><p>Residents:</p><ul><li>Erza Dharz</li><li>Mateus Nowak</li></ul>`)
+			.addTo(houses);
+		const mDrake = L.marker([2611.233337, 3671], houseOptions)
+			.bindPopup(`<b>House # 462</b><p>Residents:</p><ul><li>Drake Fitzgerald</li><li>Zahra Ali (NPC)</li></ul>`)
+			.addTo(houses);
+
+		// businesses
+		const jobs = L.layerGroup();
+
+		const jobIcon = createSmallIconOptions(jobURL);
+		const jobOptions = createMarkerOptions('Business', jobIcon);
+
+		const mDistillery = L.marker([2106, 3317], jobOptions)
+			.bindPopup(
+				`<b>The Distillery & Bar</b><p>Run by Julian Clay</p>Workers:<ul><li>Harry Harris</li><li>Cheryl Davis</li></ul>`,
+			)
+			.addTo(jobs);
+		const mToolsShop = L.marker([2078, 3468], jobOptions)
+			.bindPopup(`<b>Tools Shop</b><p>Run by Town</p>Workers:<ul><li>Roman Sadovsky</li></ul>`)
+			.addTo(jobs);
+		const mRestaurant = L.marker([2110.8125, 2911.574764], jobOptions)
+			.bindPopup(`<b>Le Restaurant</b><p>Run by Gabriel de la Cour</p>Workers:<ul><li>Mint Freeman</li></ul>`)
+			.addTo(jobs);
+		const mClinic = L.marker([2216.795471, 3465.397843], jobOptions)
+			.bindPopup(
+				`<b>The Clinic</b><p>Run by Town</p>Workers:<ul><li>Magdalena Silva</li><li>Sylvia Faraji</li><li>Drake Fitzgerald</li><li>Michael Carr (NPC)</li><li>Rowena Higgins (NPC)</li></ul>`,
+			)
+			.addTo(jobs);
+		const mMorgue = L.marker([2190.795471, 3449.499968], jobOptions)
+			.bindPopup(`<b>The Morgue</b><p>Run by Town</p>Workers:<ul><li>Valerian Ellis</li></ul>`)
+			.addTo(jobs);
+		const mSheriff = L.marker([2296.8125, 3451], jobOptions)
+			.bindPopup(
+				`<b>Sheriff's Offices</b><p>Run by The Council</p>Workers:<ul><li>Alexandra Moller</li><li>Kim Chaoreum</li></ul>`,
+			)
+			.addTo(jobs);
+		const mRations = L.marker([2296.25, 3215.646683], jobOptions)
+			.bindPopup(`<b>Rations Distribution Center</b><p>Run by The Council</p>`)
+			.addTo(jobs);
+
+		// landmarks
+		const landmarks = L.layerGroup();
+
+		const townHallIcon = L.icon({
+			iconUrl: 'https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/map_townhall.png',
+			iconSize: [40, 40],
+			iconAnchor: [20, 40],
+			popupAnchor: [0, -22.5],
+		});
+
+		const townHallOptions = createMarkerOptions('Town Hall', townHallIcon);
+
+		const mTownHall = L.marker([2272, 3493], townHallOptions)
+			.bindPopup(`<b>Town Hall</b><p>Run by the Council</p>`)
+			.addTo(landmarks);
+
+		const parkIcon = L.icon({
+			iconUrl: 'https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/map_park.png',
+			iconSize: [40, 40],
+			iconAnchor: [20, 40],
+			popupAnchor: [0, -22.5],
+		});
+
+		const parkSwingIcon = createSmallIconOptions(parkURL);
+
+		const townSquareOptions = createMarkerOptions('Town Square', parkIcon);
+		const cemeteryOptions = createMarkerOptions('Cemetery', parkIcon);
+		const swingOptions = createMarkerOptions('Swing Set', parkSwingIcon);
+		const mTownSquare = L.marker([2120.795471, 3415.56038], townSquareOptions)
+			.bindPopup(`<b>Town Square</b><p>Contains the Community Board & green space</p>`)
+			.addTo(landmarks);
+		const mCemetery = L.marker([1158, 4015], cemeteryOptions)
+			.bindPopup(
+				`<b>Memorial Cemetery Park</b><p>Graveyard and park space to bury Home's dead</p><i>Currently buried: 33</i>`,
+			)
+			.addTo(landmarks);
+		const mSwing = L.marker([1779.333374, 3853.759011], swingOptions)
+			.bindPopup(`<b>Swing</b><p>The swing is hung on the branch of a tree which is on the corner of the street</p>`)
+			.addTo(landmarks);
+
+		const bounds = [
+			[0, 0],
+			[4349, 5000],
+		];
+
+		const baseMap = L.imageOverlay(baseMapURL, bounds);
+
+		//create Map
+		map = L.map('map', {
+			crs: L.CRS.Simple,
+			center: [2174.5, 2500],
+			zoom: -2.7,
+			minZoom: -3,
+			maxZoom: -1,
+			layers: [baseMap, houses, landmarks, jobs],
+		});
+
+		const baseLayers = {
+			'Town Map': baseMap,
+		};
+
+		const overlays = {
+			'Town Square': townSquare,
+			'Packing District': packingDistrict,
+			'Hanging Gardens': hangingGardens,
+			"No Man's Land": noMansLand,
+			Commune: commune,
+			Landmarks: landmarks,
+			Residences: houses,
+			Businesses: jobs,
+		};
+
+		const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+		map.fitBounds(bounds);
+
+		// handle popups
+		var popup = L.popup();
+
+		function onMapClick(e) {
+			popup
+				.setLatLng(e.latlng)
+				.setContent('You clicked the map at ' + e.latlng.toString())
+				.openOn(map);
+		}
+
+		map.on('click', onMapClick);
+
+		function createMarkerOptions(title, icon) {
+			return {
+				title: title,
+				clickable: true,
+				draggable: false,
+				icon: icon,
+			};
+		}
+
+		function createSmallIconOptions(imgURL) {
+			const newIcon = L.icon({
+				iconUrl: imgURL,
+				iconSize: [30, 30],
+				iconAnchor: [15, 30],
+				popupAnchor: [0, -15],
+			});
+			return newIcon;
+		}
+	}
+</script>
+
+<script>
+	/* Navigate tabs of the Guidebook */
+
+	if ($('body#Pages.act-Pages').length > 0) {
+		function locationHashChanged() {
+			const tabSelected = location.hash.replace('#', '');
+			if (tabSelected === 'townmap') {
+				setTimeout(function () {
+					map.invalidateSize();
+				}, 1);
+			}
+			const guidebookContents = document.querySelectorAll('.guidebook-content');
+			const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
+
+			guidebookContents.forEach((guidebookContent) => {
+				guidebookContent.classList.remove('active');
+			});
+
+			guidebookLinks.forEach((guidebookLink) => {
+				guidebookLink.classList.remove('active');
+			});
+
+			document.querySelector("a[href='#" + tabSelected + "']").classList.add('active');
+			document.getElementById(tabSelected).classList.add('active');
+		}
+
+		window.onhashchange = locationHashChanged;
+
+		// When the document loads, we manually trigger a onHashChange event
+		// because when the page first loads, there is no hash in the location to trigger on
+		$(document).ready(function () {
+			window.dispatchEvent(new HashChangeEvent('hashchange'));
+		});
+	}
+</script>

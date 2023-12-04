@@ -1,0 +1,110 @@
+<!-- Entry for <!-- |member_name| -->
+-->
+<div
+	class="memberlist-row"
+	data-Role="<!-- |group| -->"
+	data-Player="<!-- |field_1| -->"
+	data-FC="<!-- |field_15| -->"
+	data-Job="<!-- |field_13| -->"
+>
+	<div class="acct-card">
+		<div class="acct-grid-item">
+			<div>
+				<a href="?act=Search&CODE=getalluser&mid=<!-- |id| -->&type=posts" title="view all posts">
+					<i class="fa-solid fa-pencil"></i>
+					<span>
+						<!-- |posts| -->
+						posts
+					</span>
+				</a>
+			</div>
+			<div>
+				<a href="?act=Search&CODE=getalluser&mid=<!-- |id| -->&type=topics" title="view all topics">
+					<i class="fa-solid fa-table-list"></i>
+					<span>all topics</span>
+				</a>
+			</div>
+			<div>
+				<a href="?showuser=<!-- |id| -->" title="View Profile">
+					<i class="fa-solid fa-circle-user"></i> View Profile
+				</a>
+			</div>
+		</div>
+
+		<div class="acct-grid-item">
+			<div class="maintitle">
+				<!-- |group| -->
+				<span><!-- |name| --></span>
+			</div>
+		</div>
+
+		<div class="acct-grid-item">
+			<div class="acct-avatar">
+				<script>
+					var profileAvatarURL = '<!-- |field_6| -->';
+					var avatarURL = '<!-- |avatar_url| -->';
+					if (profileAvatarURL === '') {
+						if (avatarURL === '') {
+							document.write(`<!-- |avatar| -->`);
+						} else {
+							document.write(`<img src="<!-- |avatar_url| -->">`);
+						}
+					} else {
+						document.write(`<img src="<!-- |field_6| -->">`);
+					}
+				</script>
+			</div>
+		</div>
+
+		<div class="acct-grid-item">
+			<div class="char-ver p_<!-- |parent_id| -->"><span>AGE</span><span class="colon">:</span></div>
+			<div class="char-ver p_<!-- |parent_id| -->"><span>PRONOUNS</span><span class="colon">:</span></div>
+			<div class="char-ver p_<!-- |parent_id| -->"><span>JOB</span><span class="colon">:</span></div>
+			<div class="char-ver p_<!-- |parent_id| -->"><span>PLAYED BY</span><span class="colon">:</span></div>
+			<div class="play-ver p_<!-- |parent_id| --> hide-profile"><span>PRONOUNS</span><span class="colon">:</span></div>
+			<div class="play-ver p_<!-- |parent_id| --> hide-profile"><span>TIMEZONE</span><span class="colon">:</span></div>
+			<div class="play-ver p_<!-- |parent_id| --> hide-profile"><span>DISCORD</span><span class="colon">:</span></div>
+			<div><span>JOINED</span><span class="colon">:</span></div>
+			<div><span>LAST SEEN</span><span class="colon">:</span></div>
+			<div><span>LAST POST</span><span class="colon">:</span></div>
+			<div class="char-ver p_<!-- |parent_id| -->">
+				<!-- |field_8| -->
+			</div>
+			<div class="char-ver p_<!-- |parent_id| -->">
+				<!-- |field_11| -->
+			</div>
+			<div class="char-ver p_<!-- |parent_id| -->">
+				<!-- |field_13| -->
+			</div>
+			<div class="char-ver p_<!-- |parent_id| -->">
+				<!-- |field_1| -->
+			</div>
+			<div class="play-ver p_<!-- |parent_id| --> hide-profile">
+				<!-- |field_2| -->
+			</div>
+			<div class="play-ver p_<!-- |parent_id| --> hide-profile">
+				<!-- |field_3| -->
+			</div>
+			<div class="play-ver p_<!-- |parent_id| --> hide-profile">
+				<!-- |field_4| -->
+			</div>
+			<div>
+				<!-- |joined| -->
+			</div>
+			<div>
+				<!-- |last_activity| -->
+			</div>
+			<div class="account-last-post-date">
+				<!-- |last_post| -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<div style="display: none">
+	<div class="arrivals-table-item g_<!-- |g_id| -->">
+		<div class="name"><!-- |name| --></div>
+		<div class="arrived"><!-- |field_20| --></div>
+	</div>
+</div>
+<!-- End of Entry -->

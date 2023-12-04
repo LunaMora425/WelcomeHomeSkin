@@ -1,0 +1,86 @@
+<div class="clipped-info">
+	<div id="newbie"><!-- |newest_member| --></div>
+	<div id="delete-cookies"></div>
+</div>
+
+<div id="delrow-clip">
+	<a href="?act=Login&CODE=06"> Delete cookies </a>
+	· <a href="?act=Login&CODE=05"> Mark all read </a>
+</div>
+
+<div id="boardstats">
+	<div class="bs-top">
+		<div class="bs-top-filefolder"></div>
+		<div class="bs-file-title">Stats</div>
+	</div>
+	<div class="bs-middle">
+		<div class="online-info">
+			<div class="sub-heading">Online Now</div>
+			<div class="online-now-numbers">
+				<span><!-- |total_mems| --></span> members & <span><!-- |total_guests| --></span> guests &
+				<span><!-- |total_anons| --></span> anons
+			</div>
+			<div class="online-now-links">
+				<a href="?act=Online&CODE=listall&sort_key=click" title="View Active Users by Last Click">
+					<i class="fa-solid fa-arrow-pointer"></i> Last Click
+				</a>
+				<a
+					href="?act=Online&CODE=listall&sort_key=name&sort_order=asc&show_mem=reg"
+					title="View Active Users by Member Name"
+				>
+					<i class="fa-solid fa-user-tag"></i> Member Name
+				</a>
+			</div>
+			<div class="online-now-users"><!-- |online_list| --></div>
+		</div>
+		<div class="stats-links">
+			<div class="site-total-values">
+				<div class="total-posts">
+					<a href="?act=Search&CODE=getactive" title="View Active Topics">
+						<span><i class="fa-solid fa-pencil"></i></span>
+						<!-- |total_posts| -->
+					</a>
+					posts
+				</div>
+				<div class="total-members">
+					<a href="?act=Members" title="View Member List">
+						<span><i class="fa-solid fa-address-book"></i></span>
+						<!-- |total_mem_reg| -->
+					</a>
+					members
+				</div>
+			</div>
+			<div class="site-most-users-ever">
+				<div class="sub-heading">Most Residents online</div>
+				<date>
+					<span><!-- |most_online| --></span> on <span><!-- |most_online_date| --></span>
+				</date>
+			</div>
+			<div class="site-most-users-day">
+				<div class="sub-heading">Most Residents online in one day</div>
+				<date>
+					<span><!-- |most_online_oneday| --></span> on <span><!-- |most_online_oneday_date| --></span>
+				</date>
+			</div>
+		</div>
+		<div class="stats-info">
+			<div class="online-today">
+				<div class="sub-heading">
+					Online Today:
+					<span><!-- |online_today| --></span>
+					<span id="mot_explink" style="display: inline">[<a href="javascript:expand_mot()">Expand</a>]</span
+					><span id="mot_collink" style="display: none">[<a href="javascript:collapse_mot()">Collapse</a>]</span>
+				</div>
+				<div id="mot" style="display: none">
+					<!-- |online_today_list| -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="stats-recent-topics"></div>
+	<div class="bs-bottom">
+		<div class="bs-bottom-filefolder"></div>
+	</div>
+</div>
+
+<div id="graveyard"></div>

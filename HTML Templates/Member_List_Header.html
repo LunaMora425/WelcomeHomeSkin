@@ -1,0 +1,33 @@
+<form action="index.php" method="post">
+	<input type="hidden" name="act" value="Members" />
+	<div align="left"><!-- |pages| --></div>
+	<br />
+	<div id="member-list" class="tableborder">
+		<div class="maintitle">Member List</div>
+
+		<p>Player Directory, FC List, and temporary Occupation Claim!</p>
+
+		<div id="namesearch" class="name-search"></div>
+		<div id="filters" class="filter-search"></div>
+		<div id="sortby" class="sortby-search"></div>
+
+		<div id="memberlist-wrapper"><% MEMBERLIST_ROWS %></div>
+		<!-- End content Table -->
+	</div>
+</form>
+
+<script src="https://files.jcink.net/uploads2/fizzyelf/sharedresources/memberlistFilters2.js"></script>
+<script>
+	$(document).ready(function () {
+		setUpNameSearch();
+		setUpFilters({
+			Display_As_Dropdown: false,
+			Multiple_Selections: false,
+			Filter_Lists: ['Role', 'Player', 'FC', 'Job'],
+			No_Value_Label: 'N/A',
+		});
+		setUpSortBy();
+
+		$('span[style="font-size: 90%; font-family: roboto, verdana, arial, sans"]').appendTo('.skin-info');
+	});
+</script>
