@@ -11,7 +11,7 @@
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 	function scrollToBottom() {
-		document.getElementById('boardstats').scrollIntoView({ behavior: 'smooth' });
+		document.getElementById('graveyard').scrollIntoView({ behavior: 'smooth' });
 	}
 </script>
 <script>
@@ -58,5 +58,9 @@
 	toggleSwitch.addEventListener('change', switchTheme, false);
 </script>
 <script>
+	/* clip various div ids and move them to new positions */
 	$('#newbie').appendTo('#newbie-clip');
+	$('#recent-topics').appendTo('#stats-recent-topics');
+	$('#delcookiesrow').appendTo('#delete-cookies');
+	$('#cat_2').appendTo('#graveyard');
 </script>
