@@ -1,14 +1,3 @@
-@font-face {
-	font-family: 'Ostrich Sans Rounded';
-	src: url('https://files.jcink.net/uploads2/welcomehomeroleplay/Fonts/OstrichSansRounded_Medium.otf')
-		format('opentype');
-}
-
-@font-face {
-	font-family: 'Bebas';
-	src: url('https://files.jcink.net/uploads2/welcomehomeroleplay/Fonts/Bebas_Regular.ttf') format('truetype');
-}
-
 /*=============================================== *
  * Jcink.com Forum Hosting Stylesheet
  * ==============================================
@@ -30,7 +19,7 @@ form {
 	--defaultFontSize: 16px;
 	--headerFontSize: calc(40px + (75 - 40) * ((100vw - 320px) / (1020 - 320)));
 	--headerLetterSpacing: calc(5px + (25 - 5) * ((100vw - 320px) / (1020 - 320)));
-	--subHeaderFontSize: calc(16px + (24 - 16) * ((100vw - 320px) / (1020 - 320)));
+	--subHeaderFontSize: calc(25px + (24 - 16) * ((100vw - 320px) / (1020 - 320)));
 	--defaultFontFamily: 'Open Sans', sans-serif;
 	--headerFontFamily: 'Antonio', sans-serif;
 	--subHeaderFontFamily: 'Antonio', sans-serif;
@@ -48,6 +37,8 @@ form {
 	--linkcolor: var(--prmcolor);
 	--userInfoColor: var(--mainBodyColor);
 	--mainTextShadow: 1px 1px 0px #0d141f, -1px -1px 0px #0d141f, -1px 1px 0px #0d141f, 1px -1px 0px #0d141f;
+	--subHeadingColor: var(--scdcolor);
+	--subHeadingTextShadow: var(--mainTextShadow);
 }
 
 [data-theme='light'] {
@@ -406,6 +397,11 @@ body:after {
 	display: none;
 }
 
+#cat_2 .frow-middle {
+	border-top-right-radius: unset;
+	border-top-left-radius: 4px;
+}
+
 /****************************************
     Forum Row Styling
  *****************************************/
@@ -471,7 +467,36 @@ body:after {
 }
 
 .frow-file-info {
-	padding: 20px 20px 35px 20px;
+	padding: 20px 20px 15px 20px;
+}
+
+.file-subforums {
+	padding: 20px 0px 0px 0px;
+	font-size: 14px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.file-subforums:empty {
+	display: none;
+}
+
+/* .subforums {
+	display: inline-flex;
+	align-items: center;
+} */
+
+.subforums > br {
+	display: none;
+}
+
+.subforums a {
+	font-size: 25px;
+}
+
+.subforums > strong {
+	margin-right: 5px;
 }
 
 .file-title {
@@ -571,7 +596,7 @@ body:after {
 }
 
 #cat_6 .file-desc {
-	letter-spacing: 5px;
+	letter-spacing: 10px;
 }
 
 /****************************************
@@ -634,7 +659,7 @@ body:after {
 	font-size: 20px;
 	text-transform: uppercase;
 	color: var(--prmcolor);
-	font-family: 'Bebas';
+	font-family: var(--subHeaderFontFamily);
 }
 
 .sub-heading span {
@@ -743,6 +768,178 @@ body:after {
 #recent-topics .recent-topics-info a:first-child {
 	font-size: var(--defaultFontSize);
 	display: block;
+}
+
+/****************************************
+    Forum Rules Styling
+ *****************************************/
+
+#inforum-rules {
+	background: var(--bg-color-2);
+	padding: 20px 20px 20px 20px;
+	margin: 10px 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
+	border-radius: 4px;
+}
+
+#inforum-rules > br {
+	display: none;
+}
+
+.pc-icon {
+	color: var(--scdcolor);
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+#inforum-rules b > span {
+	font-size: 30px;
+	text-transform: uppercase;
+	color: var(--prmcolor);
+	font-family: var(--subHeaderFontFamily);
+}
+
+#inforum-rules p {
+	margin: 0;
+	width: 100%;
+}
+
+#inforum-rules p:first-of-type {
+	margin-top: 10px;
+}
+
+#inforum-rules p:not(:first-of-type) {
+	margin-top: 10px;
+	font-style: italic;
+}
+
+#inforum-rules .blank {
+	letter-spacing: 10px;
+	font-style: italic;
+}
+
+/**************************************************
+  Topic List Headers
+ ***************************************************/
+
+.announcements {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.subHeading {
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--subHeadingColor);
+	font: var(--subHeaderFontSize) var(--subHeaderFontFamily);
+	text-shadow: var(--subHeadingTextShadow);
+	letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+
+/**************************************************
+  Topics Rows
+ ***************************************************/
+
+.topic-row topic-wrapper {
+	display: block;
+	background: var(--bg-body-color);
+	margin: 15px 0;
+	border-radius: 10px 10px 10px 10px;
+	border: 2px solid var(--bg-color-2);
+	/* outline: var(--mainOutline); */
+}
+
+.topic-row grid {
+	display: grid;
+	padding: 1em;
+	grid-template-areas:
+		'posticon posticon macro-icons'
+		'name name name'
+		'stats stats stats'
+		'desc desc desc'
+		'starter starter starter'
+		'start-post start-post start-post'
+		'last-poster last-poster last-poster'
+		'last-post last-post last-post';
+}
+
+.topic-row .posticon {
+	grid-area: posticon;
+	display: inline-flex;
+	justify-content: flex-start;
+	flex-basis: 90%;
+}
+
+.topic-row .icons-flex {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.topic-row .macro-icons {
+	grid-area: macro-icons;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.topic-row .new-reply span {
+	font-size: 16px;
+}
+
+.topic-row .name {
+	grid-area: name;
+	font-size: 30px;
+}
+
+.topic-row .name > a {
+	font-size: unset;
+}
+
+.topic-row .topic-desc {
+	grid-area: desc;
+	text-align: center;
+	padding: 15px 0;
+	border-bottom: 1px solid var(--scdcolor);
+}
+
+.topic-row .stats {
+	grid-area: stats;
+	font-size: 12px;
+}
+
+.topic-row .starter {
+	grid-area: starter;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.topic-row .starter > a {
+	font-size: 20px;
+}
+
+.topic-row .start-post {
+	grid-area: start-post;
+	text-align: left;
+}
+
+.topic-row .last-poster {
+	grid-area: last-poster;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.topic-row .last-poster > a {
+	font-size: 20px;
+}
+
+.topic-row .last-post {
+	grid-area: last-post;
+	text-align: right;
 }
 
 /****************************************
@@ -1008,11 +1205,11 @@ a:hover {
 }
 
 .post1 {
-	background-color: #f2f2f2;
+	background-color: var(--bg-body-color);
 }
 
 .post2 {
-	background-color: #f2f2f2;
+	background-color: var(--bg-body-color);
 }
 
 .postdetails {
@@ -1020,8 +1217,7 @@ a:hover {
 }
 
 .postcolor {
-	font-size: 12px;
-	line-height: 160%;
+	font-size: var(--defaultFontSize);
 }
 
 .postlinksbar {
@@ -1237,22 +1433,23 @@ td.darkrow2 {
  ***********************************************/
 
 .button-large {
-	background: #800000 url(https://files.jcink.net/themes/default/red-gradient.png);
+	background: var(--bg-body-color);
 	border-radius: 3px;
-	padding: 5px 12px;
+	padding: 2px 12px 5px;
 	text-align: center;
 	margin: 0px 5px 0px 5px;
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-	color: #ffffff;
+	color: var(--scdcolor);
 	font-weight: bold;
-	min-width: 75px;
+	min-width: 50px;
 	display: inline-block;
+	font-size: 20px;
 }
 
 .button-small {
-	background: #800000 url(https://files.jcink.net/themes/default/red-gradient.png);
+	background: var(--bg-body-color);
 	border-radius: 3px;
-	color: #ffffff;
+	color: var(--scdcolor);
 	font-weight: bold;
 	font-size: 11px;
 	margin: 3px;
@@ -1296,14 +1493,13 @@ td.darkrow2 {
 input[type='submit'],
 input[type='button'],
 input[type='reset'] {
-	background: #800000 url(https://files.jcink.net/themes/default/red-gradient.png);
+	background: var(--bg-body-color);
 	border-radius: 3px;
 	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-	color: #ffffff;
+	color: var(--scdcolor-2);
 	font-size: 11px;
-	font-weight: bold;
 	margin: 3px;
-	padding: 2px 6px;
+	padding: 1px 6px 2px;
 	text-decoration: none;
 	border: none;
 }
@@ -1411,22 +1607,22 @@ input[type='reset'] {
 	margin-left: 10px;
 }
 
-/* #delcookiesrow,
+#delcookiesrow,
 #mark-as-read-subto {
-	background-color: #efefef;
-	border: 1px solid #545454;
-	font-size: 10px;
-	padding: 5px;
-	width: 260px;
-	float: right;
-	margin-top: -3px;
-	padding-left: 1px;
+	display: flex;
+	justify-content: center;
+	background-color: var(--bg-color-2);
+	border: 1px solid var(--prmcolor);
+	padding: 6px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	align-items: center;
 }
 
 #mark-as-read-subto {
 	float: none;
 	padding-top: 3px;
-} */
+}
 
 /*******************************
       Board Statistics Links
@@ -1484,7 +1680,7 @@ img.attach {
 /* Topic Macros */
 
 .wrapmini {
-	float: left;
+	display: none;
 }
 
 /* Warning CSS */
@@ -1536,10 +1732,12 @@ img.attach {
  *****************************************/
 
 @media only screen and (min-width: 426px) {
+	/* navigation bar */
 	#navi {
 		margin-top: unset;
 	}
 
+	/* cat 1 columns */
 	#cat_1 {
 		grid-template-columns: repeat(2, calc(50% - 5px));
 	}
@@ -1553,12 +1751,65 @@ img.attach {
 		top: 5px;
 	}
 
+	#subforum-list.sf-1 {
+		display: grid;
+		grid-column-gap: 10px;
+		grid-row-gap: 10px;
+		align-items: stretch;
+		margin-bottom: 10px;
+		grid-template-columns: repeat(2, calc(50% - 5px));
+	}
+
+	#subforum-list.sf-1 .forum-row:last-child {
+		grid-column: 1 / 3;
+	}
+
+	/* forum styling */
 	.frow-file-title {
 		font-size: 29px;
 		top: 0px;
 		left: 20px;
 	}
 
+	/* topic styling */
+
+	.topic-row grid {
+		display: grid;
+		padding: 1em;
+		grid-template-areas:
+			'posticon posticon posticon'
+			'name name name'
+			'desc macro-icons macro-icons'
+			'stats stats stats'
+			'starter . last-poster'
+			'start-post . last-post';
+	}
+
+	.topic-row .starter {
+		display: unset;
+	}
+
+	.topic-row .last-poster {
+		display: unset;
+		text-align: right;
+	}
+
+	.topic-row .topic-desc {
+		padding: 0;
+		border-bottom: unset;
+		text-align: left;
+	}
+
+	.topic-row .stats {
+		border-bottom: 1px solid var(--scdcolor);
+		padding-bottom: 10px;
+	}
+
+	span.post-icon {
+		font-size: 12px;
+	}
+
+	/* board stats styling */
 	.bs-middle {
 		background: var(--bg-color-2);
 		border-top: 1px solid var(--bg-body-color);
@@ -1566,7 +1817,7 @@ img.attach {
 		justify-content: space-between;
 		display: grid;
 		grid-template-columns: 35% 50%;
-		border-top-right-radius: 4px;
+		border-top-left-radius: 4px;
 		padding: 20px 20px 5px 20px;
 	}
 
@@ -1586,9 +1837,30 @@ img.attach {
 }
 
 @media only screen and (min-width: 750px) {
+	#mobile-userlinks {
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-areas:
+			'user-info user-info user-info'
+			'admin-cp mod-cp guidebook'
+			'view-profile my-controls search'
+			'topics messages members'
+			'view-new-posts alerts discord';
+	}
+
 	#cat_1 .frow-file-title {
 		font-size: 29px;
 		top: 0;
+	}
+}
+
+@media only screen and (min-width: 1025px) {
+	#mobile-userlinks {
+		grid-template-columns: 2fr 1fr 1fr 1fr;
+		grid-template-areas:
+			'user-info admin-cp mod-cp guidebook'
+			'user-info view-profile my-controls search'
+			'user-info topics messages members'
+			'user-info view-new-posts alerts discord';
 	}
 }
 
