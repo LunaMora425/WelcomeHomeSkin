@@ -53,6 +53,7 @@ form {
 	--bg-userlinks-color: var(--bg-color-2);
 	--linkcolor: var(--prmcolor);
 	--userInfoColor: var(--mainBodyColor);
+	--mainTextShadow: transparent;
 }
 
 @media only screen and (min-width: 1441px) {
@@ -943,6 +944,258 @@ body:after {
 }
 
 /****************************************
+    Post Row Styles
+ *****************************************/
+
+#ST .tableborder {
+	background-color: unset;
+	border: unset;
+}
+
+#ST .post-normal {
+	margin-bottom: 20px;
+	background: var(--bg-body-color);
+	border: 1px solid var(--bg-color-2);
+	border-radius: 5px;
+	box-shadow: 2px 2px 10px var(--bg-color-2);
+}
+
+.post-grid {
+	display: grid;
+	grid-template-areas:
+		'name'
+		'miniprofile'
+		'player'
+		'details'
+		'post'
+		'bottombar';
+}
+
+.post-name {
+	grid-area: name;
+	text-align: center;
+	text-transform: uppercase;
+	color: var(--subHeadingColor);
+	font: var(--subHeaderFontSize) var(--subHeaderFontFamily);
+	text-shadow: var(--subHeadingTextShadow);
+	letter-spacing: 1px;
+	margin-bottom: 5px;
+	word-wrap: break-word;
+	padding: 5px 20px 0;
+}
+
+.post-name a:link,
+.post-name a:visited,
+.post-name a:active {
+	color: var(--scdcolor);
+}
+
+/* Mini Profile Styling */
+
+.miniprofile {
+	grid-area: miniprofile;
+}
+
+.mini-p {
+	display: grid;
+	grid-template-areas:
+		'avatar info'
+		'postnum postnum';
+	padding: 0 20px 10px;
+	grid-row-gap: 10px;
+	grid-column-gap: 10px;
+	grid-template-columns: 1fr 1.5fr;
+}
+
+.minip-avatar {
+	grid-area: avatar;
+}
+
+.minip-avatar > img {
+	width: 100px;
+	height: 200px;
+	object-fit: cover;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.minip-info {
+	grid-area: info;
+	display: grid;
+}
+
+.minip-info > span:nth-child(even) {
+	border-bottom: 1px solid var(--prmcolor);
+}
+
+.mp-info-title {
+	font-family: var(--subHeaderFontFamily);
+	letter-spacing: 5px;
+	color: var(--prmcolor);
+	font-size: 20px;
+}
+
+.postnum {
+	grid-area: postnum;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* END Mini Profile */
+
+.post-player-info {
+	grid-area: player;
+	background-color: var(--bg-color-2);
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 13px;
+	border-top: 1px solid var(--prmcolor);
+	border-bottom: 1px solid var(--prmcolor);
+}
+
+#ST .postdetails {
+	grid-area: details;
+	background-color: var(--bg-color-2);
+	text-align: center;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 13px;
+}
+
+#ST .postdetails a {
+	font-family: var(--defaultFontFamily);
+}
+
+.post-buttons span.details > a > i {
+	font-size: 20px;
+	margin: 0 6px;
+}
+
+.postcontent {
+	grid-area: post;
+	padding: 20px;
+}
+
+.bottom-bar {
+	grid-area: bottombar;
+	background: var(--bg-color-2);
+	padding: 3px 15px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#ST #wrapper #innerwrapper table:last-of-type tbody tr {
+	display: flex;
+	flex-direction: column;
+}
+
+#ST #wrapper #innerwrapper table:last-of-type tbody tr > td:first-child {
+	width: unset;
+}
+
+#ST #wrapper #innerwrapper table:last-of-type tbody tr > td:last-child {
+	width: unset;
+	display: inline-flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+
+#ST #wrapper #innerwrapper table:last-of-type tbody tr td .button-large {
+	margin: 0px 0px 5px 5px;
+}
+
+/****************************************
+    Post Box Styling [Add Reply/New Topic]
+ *****************************************/
+
+#Post.code-02 .maintitle,
+#Post.code-00 .maintitle {
+	font-size: 20px;
+}
+
+#Post.code-02 form[name='REPLIER'] table tbody tr#post-icon-options,
+#Post.code-00 form[name='REPLIER'] table tbody tr#post-icon-options {
+	display: none;
+}
+
+@media only screen and (max-width: 750px) {
+	#Post.code-02,
+	#Post.code-00 tr#enter-your-post .pformright {
+		padding: 6px 0px;
+	}
+
+	#Post.code-02 form[name='REPLIER'] table tbody,
+	#Post.code-00 form[name='REPLIER'] table tbody {
+		display: grid;
+	}
+
+	#Post.code-02 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-02 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-02 form[name='REPLIER'] table tbody tr:nth-child(8),
+	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-settings-header,
+	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-00 form[name='REPLIER'] table tbody tr:nth-child(11) {
+		display: contents;
+	}
+
+	#Post.code-02 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
+	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft {
+		display: none;
+	}
+
+	#Post.code-02 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
+	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft {
+		display: none;
+	}
+
+	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-title input[name='TopicTitle'],
+	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-desc input[name='TopicDesc'] {
+		width: 100%;
+		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
+	}
+
+	#Post.code-02 form[name='REPLIER'] textarea[name='Post'],
+	#Post.code-00 form[name='REPLIER'] textarea[name='Post'] {
+		width: 100%;
+		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
+	}
+
+	#Post.code-02 form[name='REPLIER'] input[name='helpbox'],
+	#Post.code-00 form[name='REPLIER'] input[name='helpbox'] {
+		width: 100%;
+		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
+		margin: 5px 0;
+		background-color: var(--bg-color-2);
+		border-radius: var(--defaultBorderRadius);
+		color: var(--mainBodyColor);
+		display: none;
+	}
+
+	#Post.code-02 form[name='REPLIER'] table tbody tr:last-child,
+	#Post.code-00 form[name='REPLIER'] table tbody tr:last-child {
+		display: inline-grid;
+	}
+
+	#topic-summary table tbody > tr {
+		display: flex;
+		border-bottom: 1px solid var(--prmcolor);
+	}
+
+	#topic-summary table tbody > tr:nth-child(even) > td.post1:first-child {
+		display: none;
+	}
+
+	#topic-summary table tbody > tr:nth-child(even) > td.post1:last-child {
+		width: 100%;
+	}
+}
+
+/****************************************
     Table Styles
  *****************************************/
 
@@ -1021,7 +1274,7 @@ a:hover {
 	line-height: 150%;
 	width: 22%;
 	border: 1px solid #555;
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 }
 
 #ucpmenu p {
@@ -1030,7 +1283,7 @@ a:hover {
 }
 
 #ucpcontent {
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	border: 1px solid #545454;
 	line-height: 150%;
 	width: auto;
@@ -1184,14 +1437,14 @@ a:hover {
  *****************************************/
 
 .activeuserstrip {
-	background-color: #d6d6d6;
+	background-color: var(--bg-body-color);
 	padding: 6px;
 }
 
 .normalname {
 	font-size: 12px;
 	font-weight: bold;
-	color: #003;
+	color: var(--mainBodyColor);
 }
 
 .normalname a {
@@ -1221,12 +1474,10 @@ a:hover {
 }
 
 .postlinksbar {
-	padding: 1px 5px;
-	background-color: #cccccc;
-	padding: 1px;
-	margin-top: 1px;
+	background-color: var(--bg-color-2);
+	padding: 5px;
+	text-align: center;
 	font-size: 10px;
-	background-image: url(https://files.jcink.net/themes/default/thin-gray-gradient.png);
 }
 
 .signature {
@@ -1330,21 +1581,32 @@ td.darkrow2 {
  *****************************************/
 
 .maintitle {
-	background-color: #800000;
-	/* font-weight: bold; */
 	padding: 8px;
-	color: #fff;
+	color: var(--scdcolor);
+	font-family: var(--headerFontFamily);
+	text-align: center;
+	text-shadow: var(--mainTextShadow);
 }
 
 .maintitle a:link,
 .maintitle a:visited,
 .maintitle a:active {
 	text-decoration: none;
-	color: #fff;
+	color: var(--mainBodyColor);
 }
 
 .maintitle a:hover {
 	text-decoration: underline;
+}
+
+.maintitle > .topic-title {
+	font-size: var(--subHeaderFontSize);
+}
+
+.maintitle > .topic-desc {
+	font-size: var(--defaultFontSize);
+	color: var(--scdcolor-2);
+	display: block;
 }
 
 /****************************************
@@ -1371,20 +1633,20 @@ td.darkrow2 {
  *****************************************/
 
 .tableborder {
-	background-color: #c0c0c0;
+	background-color: var(--bg-body-color);
 	border: 1px solid #555;
 	padding: 0px;
 	margin: 0;
 }
 
 .tablefill {
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	border: 1px solid #555;
 	padding: 6px;
 }
 
 .tablepad {
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	padding: 6px;
 }
 
@@ -1397,7 +1659,7 @@ td.darkrow2 {
 
 .plainborder {
 	border: 1px solid #555;
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 }
 
 /****************************************
@@ -1409,7 +1671,7 @@ td.darkrow2 {
 	font-family: Arial, sans-serif;
 	font-size: 11px;
 	color: #333;
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	border: 0px;
 	padding: 2px;
 	border: 1px solid #555;
@@ -1421,7 +1683,7 @@ td.darkrow2 {
 	font-family: Courier, Courier New, Verdana, Arial;
 	font-size: 11px;
 	color: #333;
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	border: 0px;
 	padding: 2px;
 	border: 1px solid #555;
@@ -1513,16 +1775,15 @@ input[type='reset'] {
  *****************************************/
 
 .pformstrip {
-	background-image: url(https://files.jcink.net/themes/default/gray-gradient.png);
-	background-color: #d6d6d6;
-	color: black;
+	background-color: var(--bg-color-2);
+	color: var(--mainBodyColor);
 	font-weight: bold;
 	padding: 2px 5px;
 	margin-top: 1px;
 }
 
 .pformleft {
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	padding: 6px;
 	margin-top: 1px;
 	width: 25%;
@@ -1531,7 +1792,7 @@ input[type='reset'] {
 }
 
 .pformleftw {
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	padding: 6px;
 	margin-top: 1px;
 	width: 40%;
@@ -1540,7 +1801,7 @@ input[type='reset'] {
 }
 
 .pformright {
-	background-color: #efefef;
+	background-color: var(--bg-body-color);
 	padding: 6px;
 	margin-top: 1px;
 	border-top: 1px solid #232323;
@@ -1551,11 +1812,11 @@ input[type='reset'] {
  *****************************************/
 
 .opentab {
-	color: #fff;
+	color: var(--mainBodyColor);
 	padding: 8px;
 	float: left;
 	width: auto;
-	background-color: #800000;
+	background-color: var(--bg-body-color);
 	background-image: url(https://files.jcink.net/themes/default/red-gradient.png);
 	margin-top: 3px;
 	margin-right: 2px;
@@ -1564,11 +1825,11 @@ input[type='reset'] {
 }
 
 .closedtab {
-	color: #fff;
+	color: var(--mainBodyColor);
 	padding: 7px;
 	float: left;
 	width: auto;
-	background-color: #800000;
+	background-color: var(--bg-body-color);
 	background-image: url(https://files.jcink.net/themes/default/red-gradient.png);
 	margin-top: 6px;
 	margin-right: 2px;
@@ -1629,7 +1890,7 @@ input[type='reset'] {
  *******************************/
 
 .toplinks a {
-	color: #ffffff;
+	color: var(--mainBodyColor);
 	font-size: 11px;
 	text-decoration: none;
 }
@@ -1647,7 +1908,7 @@ input[type='reset'] {
 .postbit {
 	border-bottom: solid 1px #c0c0c0;
 	color: black;
-	background: #efefef;
+	background: var(--bg-body-color);
 	font-size: 11px;
 	padding: 6px 7px;
 }
@@ -1730,6 +1991,14 @@ img.attach {
 /****************************************
   Mobile-specific Styles
  *****************************************/
+
+@media only screen and (min-width: 375px) {
+	.minip-avatar > img {
+		width: 150px;
+		height: 250px;
+		object-fit: cover;
+	}
+}
 
 @media only screen and (min-width: 426px) {
 	/* navigation bar */
@@ -1851,6 +2120,61 @@ img.attach {
 		font-size: 29px;
 		top: 0;
 	}
+
+	.postlinksbar {
+		font-size: var(--defaultFontSize);
+	}
+
+	.post-grid {
+		display: grid;
+		grid-template-areas:
+			'. name'
+			'miniprofile player'
+			'miniprofile details'
+			'miniprofile post'
+			'bottombar bottombar';
+	}
+
+	.post-name {
+		letter-spacing: 5px;
+		padding: 10px;
+	}
+
+	.mini-p {
+		display: grid;
+		grid-template-areas:
+			'avatar'
+			'info'
+			'postnum';
+		grid-template-columns: 100%;
+		padding: 0;
+		padding-bottom: 5px;
+		position: sticky;
+		position: -webkit-sticky;
+		top: 50px;
+	}
+
+	.minip-info {
+		padding-left: 5px;
+	}
+
+	.minip-info > span:nth-child(even) {
+		padding-bottom: 5px;
+	}
+
+	.minip-avatar > img {
+		width: 200px;
+		height: 300px;
+		object-fit: cover;
+	}
+
+	.postnum {
+		padding-left: 5px;
+	}
+
+	.postcontent {
+		padding: 50px;
+	}
 }
 
 @media only screen and (min-width: 1025px) {
@@ -1861,6 +2185,11 @@ img.attach {
 			'user-info view-profile my-controls search'
 			'user-info topics messages members'
 			'user-info view-new-posts alerts discord';
+	}
+
+	#mobile-userlinks.dropdown-menu {
+		width: 1020px;
+		left: calc(100% - 75%);
 	}
 }
 
