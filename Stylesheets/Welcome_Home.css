@@ -62,6 +62,18 @@ form {
 		--headerLetterSpacing: 37px;
 	}
 }
+/****************************************
+  Account Specific Displays
+ *****************************************/
+
+.g_7 #OOC {
+	display: none;
+}
+
+.g_4 #IC,
+.g_6 #IC {
+	display: none;
+}
 
 /****************************************
   Body Background & Text Style
@@ -1109,27 +1121,35 @@ body:after {
 }
 
 /****************************************
-    Post Box Styling [Add Reply/New Topic]
+    Post Box Styling
+	[Add Reply, New Topic, Quote, Report,
+	Quick Reply]
  *****************************************/
 
 #Post.code-02 .maintitle,
-#Post.code-00 .maintitle {
+#Post.code-00 .maintitle,
+#Post.code-06 .maintitle,
+#ST.act-ST .maintitle {
 	font-size: 20px;
 }
 
 #Post.code-02 form[name='REPLIER'] table tbody tr#post-icon-options,
-#Post.code-00 form[name='REPLIER'] table tbody tr#post-icon-options {
+#Post.code-00 form[name='REPLIER'] table tbody tr#post-icon-options,
+#Post.code-06 form[name='REPLIER'] table tbody tr#post-icon-options {
 	display: none;
 }
 
 @media only screen and (max-width: 750px) {
 	#Post.code-02,
-	#Post.code-00 tr#enter-your-post .pformright {
+	#Post.code-00 tr#enter-your-post .pformright,
+	#Post.code-06 tr#enter-your-post .pformright {
 		padding: 6px 0px;
 	}
 
 	#Post.code-02 form[name='REPLIER'] table tbody,
-	#Post.code-00 form[name='REPLIER'] table tbody {
+	#Post.code-00 form[name='REPLIER'] table tbody,
+	#Post.code-06 form[name='REPLIER'] table tbody,
+	#report.act-report form[name='REPLIER'] table tbody {
 		display: grid;
 	}
 
@@ -1139,17 +1159,22 @@ body:after {
 	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-settings-header,
 	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons-header,
 	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post-header,
-	#Post.code-00 form[name='REPLIER'] table tbody tr:nth-child(11) {
+	#Post.code-00 form[name='REPLIER'] table tbody tr:nth-child(11),
+	#Post.code-06 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-06 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-06 form[name='REPLIER'] table tbody tr:nth-child(8) {
 		display: contents;
 	}
 
 	#Post.code-02 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
-	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft {
+	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
+	#Post.code-06 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft {
 		display: none;
 	}
 
 	#Post.code-02 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
-	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft {
+	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
+	#Post.code-06 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft {
 		display: none;
 	}
 
@@ -1160,13 +1185,17 @@ body:after {
 	}
 
 	#Post.code-02 form[name='REPLIER'] textarea[name='Post'],
-	#Post.code-00 form[name='REPLIER'] textarea[name='Post'] {
+	#Post.code-00 form[name='REPLIER'] textarea[name='Post'],
+	#Post.code-06 form[name='REPLIER'] textarea[name='Post'],
+	#report.act-report form[name='REPLIER'] textarea[name='message'],
+	#ST.act-ST form[name='REPLIER'] textarea[name='Post'] {
 		width: 100%;
-		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
+		max-width: calc(260px + (600 - 270) * (100vw - 320px) / (1020 - 320));
 	}
 
 	#Post.code-02 form[name='REPLIER'] input[name='helpbox'],
-	#Post.code-00 form[name='REPLIER'] input[name='helpbox'] {
+	#Post.code-00 form[name='REPLIER'] input[name='helpbox'],
+	#Post.code-06 form[name='REPLIER'] input[name='helpbox'] {
 		width: 100%;
 		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
 		margin: 5px 0;
@@ -1177,7 +1206,8 @@ body:after {
 	}
 
 	#Post.code-02 form[name='REPLIER'] table tbody tr:last-child,
-	#Post.code-00 form[name='REPLIER'] table tbody tr:last-child {
+	#Post.code-00 form[name='REPLIER'] table tbody tr:last-child,
+	#Post.code-06 form[name='REPLIER'] table tbody tr:last-child {
 		display: inline-grid;
 	}
 
@@ -1193,6 +1223,83 @@ body:after {
 	#topic-summary table tbody > tr:nth-child(even) > td.post1:last-child {
 		width: 100%;
 	}
+}
+
+/****************************************
+   ALL NEW Search Grid for #Search.code-00
+ *****************************************/
+
+#Search.code-00 #search-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	border: 1px solid var(--prmcolor);
+}
+
+#Search.code-00 .maintitle {
+	font-size: var(--subHeaderFontSize);
+}
+
+#Search.code-00 .keyword-search-heading {
+	grid-area: 1 / 1 / 2 / 2;
+	margin-bottom: 2px;
+}
+
+#Search.code-00 .keyword-search {
+	display: flex;
+	grid-area: 2 / 1 / 3 / 1;
+	flex-direction: column;
+}
+
+#Search.code-00 .member-search {
+	display: flex;
+	flex-direction: column;
+	grid-area: 3 / 1 / 4 / 1;
+}
+
+#Search.code-00 .search-options-heading {
+	grid-area: 4 / 1 / 5 / 1;
+	margin-bottom: 2px;
+}
+
+#Search.code-00 .search-where {
+	display: flex;
+	flex-direction: column;
+	grid-area: 5 / 1 / 6 / 1;
+}
+
+#Search.code-00 #search-grid .pformstrip {
+	margin-bottom: 10px;
+}
+
+#Search.code-00 .refine-search {
+	grid-area: 6 / 1 / 7 / 1;
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+#Search.code-00 .refine-search > .pformstrip {
+	grid-row: 1;
+	grid-column: 1 / 2;
+}
+
+#Search.code-00 .submit-search-form {
+	grid-area: 7 / 1 / 8 / 1;
+	display: flex;
+	justify-content: center;
+	background: var(--bg-body-color);
+	padding: 0 0 15px;
+}
+
+#Search.code-00 .submit-search-form > input[type='submit'] {
+	padding: 5px 10px;
+}
+
+.keyword-search,
+.member-search,
+.search-where,
+.refine-search {
+	background-color: var(--bg-body-color);
+	padding: 15px;
 }
 
 /****************************************
@@ -2105,6 +2212,7 @@ img.attach {
 	}
 }
 
+/* Desktop Styling */
 @media only screen and (min-width: 750px) {
 	#mobile-userlinks {
 		grid-template-columns: 1fr 1fr 1fr;
@@ -2174,6 +2282,47 @@ img.attach {
 
 	.postcontent {
 		padding: 50px;
+	}
+
+	/* Custom Search Menu */
+	#Search.code-00 #search-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	#Search.code-00 .keyword-search-heading {
+		grid-area: 1 / 1 / 2 / 3;
+	}
+
+	#Search.code-00 .keyword-search {
+		grid-area: 2 / 1 / 3 / 2;
+	}
+
+	#Search.code-00 .member-search {
+		grid-area: 2 / 2 / 3 / 3;
+	}
+
+	#Search.code-00 .search-options-heading {
+		grid-area: 3 / 1 / 4 / 3;
+	}
+
+	#Search.code-00 .search-where {
+		grid-area: 4 / 1 / 5 / 2;
+	}
+
+	#Search.code-00 .search-where > select[name='forums[]'] {
+		height: 150px;
+	}
+
+	#Search.code-00 #search-grid .pformstrip {
+		margin-bottom: 10px;
+	}
+
+	#Search.code-00 .refine-search {
+		grid-area: 4 / 2 / 5 / 3;
+	}
+
+	#Search.code-00 .submit-search-form {
+		grid-area: 6 / 1 / 7 / 3;
 	}
 }
 
