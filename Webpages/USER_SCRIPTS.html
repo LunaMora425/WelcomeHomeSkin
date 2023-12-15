@@ -96,3 +96,134 @@
 		};
 	}
 </script>
+<script>
+	/* Custom UCP Menu, base by Lux
+	 * https://github.com/DawnEggleton/JcinkSkinTemplate/blob/main/source/js/defaultsMenus.js */
+
+	if ($('body#UserCP').length > 0 && $('body').hasClass('p_0')) {
+		document.querySelector('#ucpmenu').innerHTML = `
+		<div class=maintitle>Player Menu</div><div class=outer-grid><div class=outer-grid-item><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=54">Manage Characters</a> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-2><b class=ucp-heading>Tracking</b> <a href="?act=UserCP&CODE=alerts">Alerts</a> <a href="?act=UserCP&CODE=50">Forums</a> <a href="?act=UserCP&CODE=26">Topics</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
+		`;
+	} else if ($('body#UserCP').length > 0) {
+		document.querySelector('#ucpmenu').innerHTML = `
+		<div class=maintitle>Character Menu</div><div class=outer-grid-2><div class=outer-grid-item-1><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
+		`;
+	}
+</script>
+<script>
+	/* Custom Messages Menu, base by Lux
+	 * https://github.com/DawnEggleton/JcinkSkinTemplate/blob/main/source/js/defaultsMenus.js */
+
+	if ($('body#Msg').length > 0) {
+		document.querySelector('#ucpmenu').innerHTML = `
+		<div class="maintitle">Menu</div><div class="outer-grid"><div class="outer-grid-item"><b class="ucp-heading">Inbox</b><a href="?act=Msg&CODE=04">Compose New Message</a><a href="?act=Msg&CODE=01">Go to Inbox</a><a href="?act=Msg&CODE=01&VID=sent"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i>Sent Items</a><a href="?act=Msg&CODE=20">Saved (Unsent) PMs</a><a href="?act=Msg&CODE=30">Message Tracker</a></div><div class="outer-grid-item"><b class="ucp-heading">Settings</b><a href="javascript:window.open('index.php?showuser=<!-- |id| -->&CODE=friends','Friends','width=620,height=460,resizable=yes,scrollbars=yes');void(0);">My Friends/Contacts</a><a href="?act=Msg&CODE=delete">Empty PM Folders</a><a href="?act=Msg&CODE=07">Edit Storage Folders</a><a href="?act=Msg&CODE=14">Archive Messages</a></div><div class="outer-grid-item"><b class="ucp-heading">User CP</b><a href="?act=UserCP&CODE=00">Home & Settings</a></div></div>
+		`;
+	}
+</script>
+<script>
+	/* Set Main Profile by account type */
+
+	if ($('body#Profile').length > 0) {
+		const profileClass = document.getElementById('main-profile-grid-wrapper');
+
+		if (!profileClass.classList.contains('p_0')) {
+			const elementToHide = document.getElementById('OOC');
+			elementToHide.classList.add('hide-profile');
+		} else if (profileClass.classList.contains('p_0')) {
+			const elementToHide = document.getElementById('IC');
+			elementToHide.classList.add('hide-profile');
+		}
+	}
+
+	/* Set Secret Staff Zone viewable only to staff and player */
+
+	if ($('body#Profile').length > 0) {
+		const profileClass = document.getElementById('main-profile-grid-wrapper');
+		const body = document.querySelector('body');
+
+		const bodyMemberId = Array.from(body.classList)
+			.find((cls) => cls.startsWith('m_'))
+			.substring(2);
+		const profileClassMemberId = Array.from(profileClass.classList)
+			.find((cls) => cls.startsWith('m_'))
+			.substring(2);
+		const profileClassParentId = Array.from(profileClass.classList)
+			.find((cls) => cls.startsWith('p_'))
+			.substring(2);
+
+		const isStaff = body.classList.contains('g_4');
+		const elementToHide = document.querySelector('.secret-staff-info');
+
+		if (isStaff || bodyMemberId === profileClassMemberId || bodyMemberId === profileClassParentId) {
+			elementToHide.classList.remove('hide-profile');
+		}
+	}
+</script>
+
+<script>
+	/* Customized Profile Fields within UserCP */
+
+	if ($('body#UserCP.code-01').length > 0) {
+		const body = document.querySelector('body');
+
+		$(document).ready(function () {
+			const firstPformstrip = $('form[name="theForm"] .pformstrip:first');
+			firstPformstrip.html(`
+			<div class="maintitle">Player Profile Fields</div>
+    		`);
+			firstPformstrip.after(`
+			<div class="pformstrip">Please fill in your player information.<br/><i>Note: This information will auto-fill on any characters you create through the \'Manage Characters\' link.</i></div>
+			`);
+
+			const specificText = 'Your personal profile, this section is optional';
+			$('form[name="theForm"] .pformstrip:contains("' + specificText + '")').remove();
+
+			const field5 = $('form[name="theForm"] tr#field_5');
+			field5.after(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Graphics Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">Graphics for your main profile.</td></tr>
+			`);
+			const field6 = $('form[name="theForm"] tr#field_6');
+			field6.after(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Character Profile Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">Please fill in your character profile information.</td></tr>
+			`);
+
+			const field21 = $('form[name="theForm"] tr#field_21');
+			field21.before(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Plot Hook Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">You can have up to THREE plot hooks listed for your character.</td></tr>
+			`);
+
+			const field19 = $('form[name="theForm"] tr#field_19');
+			field19.before(`
+			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Secret Staff Fields</div></td></tr>
+			<tr><td class="pformstrip" colspan="2">The information in this section is visible ONLY to you and Staff.</td></tr>
+			`);
+
+			setTimeout(function () {
+				const tables = $('form table');
+				const firstTable = tables[0];
+				const pformstrips = $('form .pformstrip');
+				const secondTable = tables[1];
+				var rows = secondTable.querySelectorAll('tr');
+				if ($('body').hasClass('p_0')) {
+					for (var i = 9; i < 36; i++) {
+						rows[i].classList.add('hide-profile');
+					}
+				} else {
+					pformstrips.eq(0).addClass('hide-profile');
+					pformstrips.eq(1).addClass('hide-profile');
+					firstTable.classList.add('hide-profile');
+					rows[4].classList.add('hide-profile');
+					rows[5].classList.add('hide-profile');
+				}
+			}, 0);
+		});
+	}
+</script>
+<script>
+	editProfileInfoInheritFields({
+		force_inherit_fields: [1, 2, 3, 4, 5],
+	});
+</script>
