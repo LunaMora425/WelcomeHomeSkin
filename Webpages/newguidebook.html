@@ -1,14 +1,45 @@
-<% g-styles %>
-
 <div id="tabs">
-	<div class="guidebook-menu"><% g-menu %></div>
+	<aside id="guidebook-menu">
+		<ul>
+			<h4>Start Here</h4>
+			<li><a href="#tabs-1" class="active">Welcome</a></li>
+			<li><a href="#tabs-2">Rules</a></li>
+			<li><a href="#tabs-3">Plot</a></li>
+		</ul>
 
-	<div class="guidebook-info">
-		<div id="tabs-1"><% g-welcome %></div>
-		<div id="tabs-2"><% g-rules %></div>
+		<ul>
+			<h4>How To Join</h4>
+			<li><a href="#tabs-4">Lore</a></li>
+			<li><a href="#tabs-5">Powers</a></li>
+			<li><a href="#tabs-6">Application</a></li>
+			<li><a href="#tabs-7">Add More Here</a></li>
+		</ul>
+	</aside>
 
-		<div id="tabs-3"></div>
-		<div id="tabs-4">
+	<div id="guidebook-info">
+		<section id="tabs-1" class="guidebook-content active"><% g-welcome %></section>
+
+		<section id="tabs-2" class="guidebook-content"><% g-rules %></section>
+
+		<section id="tabs-3" class="guidebook-content">
+			<h2>Content heading 3</h2>
+			<p>
+				Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan,
+				mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad
+				litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo
+				pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec,
+				luctus a, lacus.
+			</p>
+			<p>
+				Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi.
+				Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede
+				vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non
+				libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae,
+				pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus.
+				Vivamus a libero vitae lectus hendrerit hendrerit.
+			</p>
+		</section>
+		<section id="tabs-4" class="guidebook-content">
 			<h2>Content heading 4</h2>
 			<p>
 				Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan,
@@ -25,8 +56,8 @@
 				pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus.
 				Vivamus a libero vitae lectus hendrerit hendrerit.
 			</p>
-		</div>
-		<div id="tabs-5">
+		</section>
+		<section id="tabs-5" class="guidebook-content">
 			<h2>Content heading 5</h2>
 			<p>
 				Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan,
@@ -43,9 +74,8 @@
 				pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus.
 				Vivamus a libero vitae lectus hendrerit hendrerit.
 			</p>
-		</div>
-
-		<div id="tabs-6">
+		</section>
+		<section id="tabs-6" class="guidebook-content">
 			<h2>Content heading 6</h2>
 			<p>
 				Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan,
@@ -62,13 +92,6 @@
 				pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus.
 				Vivamus a libero vitae lectus hendrerit hendrerit.
 			</p>
-		</div>
+		</section>
 	</div>
 </div>
-
-<script>
-	$(function () {
-		$('#tabs').tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
-		$('#tabs li').removeClass('ui-corner-top').addClass('ui-corner-left');
-	});
-</script>

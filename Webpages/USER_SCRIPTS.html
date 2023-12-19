@@ -121,6 +121,25 @@
 	}
 </script>
 <script>
+	/* Set Mini Profile by account type */
+
+	if ($('body#ST').length > 0) {
+		const charMiniProfiles = document.querySelectorAll('.mini-p-1');
+		const playerMiniProfiles = document.querySelectorAll('.mini-p-2');
+
+		charMiniProfiles.forEach((charMiniProfile) => {
+			if (charMiniProfile.classList.contains('p_0')) {
+				charMiniProfile.classList.add('hide-profile');
+			}
+		});
+
+		playerMiniProfiles.forEach((playerMiniProfile) => {
+			if (playerMiniProfile.classList.contains('p_0')) {
+				playerMiniProfile.classList.remove('hide-profile');
+			}
+		});
+	}
+
 	/* Set Main Profile by account type */
 
 	if ($('body#Profile').length > 0) {
@@ -128,7 +147,9 @@
 
 		if (!profileClass.classList.contains('p_0')) {
 			const elementToHide = document.getElementById('OOC');
+			const mainTitle = document.querySelector('.maintitle');
 			elementToHide.classList.add('hide-profile');
+			mainTitle.classList.add('hide-profile');
 		} else if (profileClass.classList.contains('p_0')) {
 			const elementToHide = document.getElementById('IC');
 			elementToHide.classList.add('hide-profile');
@@ -157,6 +178,25 @@
 		if (isStaff || bodyMemberId === profileClassMemberId || bodyMemberId === profileClassParentId) {
 			elementToHide.classList.remove('hide-profile');
 		}
+	}
+
+	/* Set Member List by account type */
+
+	if ($('body#Members').length > 0) {
+		const charMemberRows = document.querySelectorAll('.char-ver');
+		const playerMemberRows = document.querySelectorAll('.play-ver');
+
+		charMemberRows.forEach((charMemberRow) => {
+			if (charMemberRow.classList.contains('p_0')) {
+				charMemberRow.classList.add('hide-profile');
+			}
+		});
+
+		playerMemberRows.forEach((playerMemberRow) => {
+			if (playerMemberRow.classList.contains('p_0')) {
+				playerMemberRow.classList.remove('hide-profile');
+			}
+		});
 	}
 </script>
 
@@ -226,4 +266,29 @@
 	editProfileInfoInheritFields({
 		force_inherit_fields: [1, 2, 3, 4, 5],
 	});
+</script>
+<script>
+	/* Navigate tabs of the Guidebook */
+	function locationHashChanged() {
+		const tabSelected = location.hash.replace('#', '');
+		const guidebookContents = document.querySelectorAll('.guidebook-content');
+		const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
+
+		guidebookContents.forEach((guidebookContent) => {
+			guidebookContent.classList.remove('active');
+		});
+
+		guidebookLinks.forEach((guidebookLink) => {
+			guidebookLink.classList.remove('active');
+		});
+
+		document.querySelector("a[href='#" + tabSelected + "']").classList.add('active');
+		document.getElementById(tabSelected).classList.add('active');
+	}
+
+	window.onhashchange = locationHashChanged;
+
+	// When the document loads, we manually trigger a onHashChange event
+	// because when the page first loads, there is no hash in the location to trigger on
+	window.dispatchEvent(new HashChangeEvent('hashchange'));
 </script>
