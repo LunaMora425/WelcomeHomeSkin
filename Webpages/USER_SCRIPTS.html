@@ -226,7 +226,10 @@
 			const field6 = $('form[name="theForm"] tr#field_6');
 			field6.after(`
 			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Character Profile Fields</div></td></tr>
-			<tr><td class="pformstrip" colspan="2">Please fill in your character profile information.</td></tr>
+			<tr><td class="pformstrip" colspan="2">Please fill in your character profile information.</td>
+				<tr><td class="pformstrip" colspan="2"><i>The information you enter for your character under the application is up to you--you can tell us as much or as little about your character as you'd like. You can even lie.
+				<br>Think about your character profile as public knowledge about your character. If your character has secrets, you are allowed to protect them. But secrets can be hard to keep.</i>
+				<tr><td class="pformstrip" colspan="2">For detailed instructions, please see our <a href="?act=Pages&pid=3#tabs-11">GUIDEBOOK</a>.</td></tr>
 			`);
 
 			const field21 = $('form[name="theForm"] tr#field_21');
@@ -248,7 +251,7 @@
 				const secondTable = tables[1];
 				var rows = secondTable.querySelectorAll('tr');
 				if ($('body').hasClass('p_0')) {
-					for (var i = 9; i < 36; i++) {
+					for (var i = 9; i < 38; i++) {
 						rows[i].classList.add('hide-profile');
 					}
 				} else {
@@ -269,26 +272,29 @@
 </script>
 <script>
 	/* Navigate tabs of the Guidebook */
-	function locationHashChanged() {
-		const tabSelected = location.hash.replace('#', '');
-		const guidebookContents = document.querySelectorAll('.guidebook-content');
-		const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
 
-		guidebookContents.forEach((guidebookContent) => {
-			guidebookContent.classList.remove('active');
-		});
+	if ($('body#Pages.act-Pages').length > 0) {
+		function locationHashChanged() {
+			const tabSelected = location.hash.replace('#', '');
+			const guidebookContents = document.querySelectorAll('.guidebook-content');
+			const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
 
-		guidebookLinks.forEach((guidebookLink) => {
-			guidebookLink.classList.remove('active');
-		});
+			guidebookContents.forEach((guidebookContent) => {
+				guidebookContent.classList.remove('active');
+			});
 
-		document.querySelector("a[href='#" + tabSelected + "']").classList.add('active');
-		document.getElementById(tabSelected).classList.add('active');
+			guidebookLinks.forEach((guidebookLink) => {
+				guidebookLink.classList.remove('active');
+			});
+
+			document.querySelector("a[href='#" + tabSelected + "']").classList.add('active');
+			document.getElementById(tabSelected).classList.add('active');
+		}
+
+		window.onhashchange = locationHashChanged;
+
+		// When the document loads, we manually trigger a onHashChange event
+		// because when the page first loads, there is no hash in the location to trigger on
+		window.dispatchEvent(new HashChangeEvent('hashchange'));
 	}
-
-	window.onhashchange = locationHashChanged;
-
-	// When the document loads, we manually trigger a onHashChange event
-	// because when the page first loads, there is no hash in the location to trigger on
-	window.dispatchEvent(new HashChangeEvent('hashchange'));
 </script>
