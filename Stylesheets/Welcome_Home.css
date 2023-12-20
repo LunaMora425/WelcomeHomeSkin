@@ -3714,6 +3714,11 @@ img.attach {
 	#Profile #IC .plothook-box {
 		padding: 20px 50px;
 	}
+
+	/* Member List */
+	#Members.act-Members .acct-grid-item > .maintitle span a {
+		font-size: 38px;
+	}
 }
 
 /***********************************
