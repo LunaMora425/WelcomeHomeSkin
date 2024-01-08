@@ -110,6 +110,15 @@
 						</div>
 					</div>
 
+					<div class="member-inventory">
+						<a
+							href="/index.php?act=store&code=view_inventory&memberid=<!-- |id| -->"
+							title="<!-- |name| -->'s Inventory"
+						>
+							View Inventory
+						</a>
+					</div>
+
 					<div class="ic-awards-area">
 						Awards:
 						<!-- |awards_total| -->
@@ -159,8 +168,10 @@
 						<span><!-- |field_12| --></span>
 						<span class="icmp-info-title">OCCUPATION</span>
 						<span><!-- |field_13| --></span>
-						<span class="icmp-info-title">Hometown</span>
+						<span class="icmp-info-title">HOMETOWN</span>
 						<span><!-- |field_14| --></span>
+						<span class="icmp-info-title">ARRIVED</span>
+						<span><!-- |field_20| --></span>
 					</div>
 				</div>
 
@@ -224,49 +235,61 @@
 
 		<div class="ic-tracker-area">
 			<div class="maintitle">Thread Tracker</div>
-			TBD once we start getting threads on the site
+			<div class="thread-box-wrap">
+				<div class="maintitle">Active</div>
+				<div id="trackerwrap"></div>
+			</div>
+			<div class="thread-box-wrap">
+				<div class="maintitle">Archived</div>
+				<div id="historywrap"></div>
+			</div>
 		</div>
 	</div>
-</div>
-
-<div id="fizztrackercredits"></div>
-<div>
-	<div id="trackerwrap"></div>
-</div>
-<div>
-	<div id="historywrap"></div>
+	<div id="fizztrackercredits"></div>
 </div>
 
 <script src="https://files.jcink.net/uploads2/fizzyelf/sharedresources/autoTrackerMainProfile.js"></script>
 <script>
 	/** auto-tracker code by FizzyElf - https://fizzyelf.jcink.net **/
-	trackerParams = {
-		includeCategoryIds: ['1', '2'],
-	};
-	FillTracker(`<!-- |name| -->`, trackerParams);
+	$(document).ready(function () {
+		$('#fizztrackercredits').appendTo('.skin-info');
+
+		if (!$('#IC').hasClass('hide-profile')) {
+			trackerParams = {
+				includeCategoryIds: ['2', '4', '5', '6'],
+				includeForumIds: ['22', '23'],
+				archiveForumNames: ['Graveyard'],
+				archiveForumIds: ['10'],
+				lockedMacroIdentifier: '[title=Closed]',
+			};
+			FillTracker(`<!-- |name| -->`, trackerParams);
+		}
+	});
 </script>
 <style>
-	.tracker-item {
-		margin-left: 2em;
-		margin-bottom: 0.5em;
+	.tracker-item a {
+		font-size: 20px;
 	}
-	#trackerwrap .tracker-item,
-	#altwrap .tracker-item {
-		text-indent: -1.5em;
-	}
+
 	.tracker-item .status {
 		width: 1.5em;
 		text-align: center;
 	}
 	.tracker-item .caughtup {
 		color: green;
+		font-size: 20px;
 	}
 	.tracker-item .myturn {
 		color: brown;
+		font-size: 20px;
 	}
-	.tracker-item * {
-		text-indent: 0;
+
+	.tracker-item hr {
+		background-color: var(--scdcolor);
+		border: none;
+		height: 2px;
 	}
+
 	#fizztrackercredits {
 		font-size: 90%;
 		font-family: roboto, verdana, arial, sans;

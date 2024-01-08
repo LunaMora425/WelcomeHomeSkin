@@ -236,6 +236,7 @@ body:after {
 	grid-template-areas:
 		'guidebook search'
 		'discord members'
+		'bank store'
 		'user-info user-info'
 		'admin-cp mod-cp'
 		'view-profile my-controls'
@@ -325,6 +326,14 @@ body:after {
 
 .nav-members {
 	grid-area: members;
+}
+
+.nav-bank {
+	grid-area: bank;
+}
+
+.nav-store {
+	grid-area: store;
 }
 
 .dropdown-menu {
@@ -1130,76 +1139,134 @@ body:after {
 	Quick Reply]
  *****************************************/
 
-#Post.code-02 .maintitle,
 #Post.code-00 .maintitle,
+#Post.code-01 .maintitle,
+#Post.code-02 .maintitle,
+#Post.code-03 .maintitle,
 #Post.code-06 .maintitle,
+#Post.code-08 .maintitle,
+#Post.code-09 .maintitle,
 #ST.act-ST .maintitle {
 	font-size: 20px;
 }
 
+#Post.code-01 form[name='REPLIER'] table tbody tr#post-icon-options,
 #Post.code-02 form[name='REPLIER'] table tbody tr#post-icon-options,
+#Post.code-03 form[name='REPLIER'] table tbody tr#post-icon-options,
 #Post.code-00 form[name='REPLIER'] table tbody tr#post-icon-options,
-#Post.code-06 form[name='REPLIER'] table tbody tr#post-icon-options {
+#Post.code-06 form[name='REPLIER'] table tbody tr#post-icon-options,
+#Post.code-08 form[name='REPLIER'] table tbody tr#post-icon-options,
+#Post.code-09 form[name='REPLIER'] table tbody tr#post-icon-options {
 	display: none;
 }
 
 @media only screen and (max-width: 750px) {
 	#Post.code-02,
 	#Post.code-00 tr#enter-your-post .pformright,
-	#Post.code-06 tr#enter-your-post .pformright {
+	#Post.code-01 tr#enter-your-post .pformright,
+	#Post.code-03 tr#enter-your-post .pformright,
+	#Post.code-06 tr#enter-your-post .pformright,
+	#Post.code-08 tr#enter-your-post .pformright,
+	#Post.code-09 tr#enter-your-post .pformright {
 		padding: 6px 0px;
 	}
 
-	#Post.code-02 form[name='REPLIER'] table tbody,
 	#Post.code-00 form[name='REPLIER'] table tbody,
+	#Post.code-01 form[name='REPLIER'] table tbody,
+	#Post.code-02 form[name='REPLIER'] table tbody,
+	#Post.code-03 form[name='REPLIER'] table tbody,
 	#Post.code-06 form[name='REPLIER'] table tbody,
+	#Post.code-08 form[name='REPLIER'] table tbody,
+	#Post.code-09 form[name='REPLIER'] table tbody,
 	#report.act-report form[name='REPLIER'] table tbody {
 		display: grid;
 	}
 
+	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-settings-header,
+	#Post.code-00 form[name='REPLIER'] table tbody tr:nth-child(11),
+	#Post.code-01 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-01 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-01 form[name='REPLIER'] table tbody tr#post-as-header,
+	#Post.code-01 form[name='REPLIER'] table tbody tr#topic-settings-header,
+	#Post.code-01 form[name='REPLIER'] table tbody tr:nth-child(13),
+	#Post.code-03 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-03 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-03 form[name='REPLIER'] table tbody tr#post-as-header,
+	#Post.code-03 form[name='REPLIER'] table tbody tr#topic-settings-header,
+	#Post.code-03 form[name='REPLIER'] table tbody tr:nth-child(10),
 	#Post.code-02 form[name='REPLIER'] table tbody tr#code-buttons-header,
 	#Post.code-02 form[name='REPLIER'] table tbody tr#enter-your-post-header,
 	#Post.code-02 form[name='REPLIER'] table tbody tr:nth-child(8),
-	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-settings-header,
-	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons-header,
-	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post-header,
-	#Post.code-00 form[name='REPLIER'] table tbody tr:nth-child(11),
 	#Post.code-06 form[name='REPLIER'] table tbody tr#code-buttons-header,
 	#Post.code-06 form[name='REPLIER'] table tbody tr#enter-your-post-header,
-	#Post.code-06 form[name='REPLIER'] table tbody tr:nth-child(8) {
+	#Post.code-06 form[name='REPLIER'] table tbody tr:nth-child(8),
+	#Post.code-08 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-08 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-08 form[name='REPLIER'] table tbody tr#post-as-header,
+	#Post.code-08 form[name='REPLIER'] table tbody tr#topic-settings-header,
+	#Post.code-09 form[name='REPLIER'] table tbody tr#code-buttons-header,
+	#Post.code-09 form[name='REPLIER'] table tbody tr#enter-your-post-header,
+	#Post.code-09 form[name='REPLIER'] table tbody tr#post-as-header,
+	#Post.code-09 form[name='REPLIER'] table tbody tr#topic-settings-header {
 		display: contents;
 	}
 
+	#Post.code-01 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
 	#Post.code-02 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
 	#Post.code-00 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
-	#Post.code-06 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft {
+	#Post.code-03 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
+	#Post.code-06 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
+	#Post.code-08 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft,
+	#Post.code-09 form[name='REPLIER'] table tbody tr#code-buttons > td.pformleft {
 		display: none;
 	}
 
+	#Post.code-01 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
 	#Post.code-02 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
+	#Post.code-03 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
 	#Post.code-00 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
-	#Post.code-06 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft {
+	#Post.code-06 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
+	#Post.code-08 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft,
+	#Post.code-09 form[name='REPLIER'] table tbody tr#enter-your-post > td.pformleft {
 		display: none;
 	}
 
 	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-title input[name='TopicTitle'],
-	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-desc input[name='TopicDesc'] {
+	#Post.code-00 form[name='REPLIER'] table tbody tr#topic-desc input[name='TopicDesc'],
+	#Post.code-01 form[name='REPLIER'] table tbody tr#topic-title input[name='TopicTitle'],
+	#Post.code-01 form[name='REPLIER'] table tbody tr#topic-desc input[name='TopicDesc'],
+	#Post.code-08 form[name='REPLIER'] table tbody tr#topic-title input[name='TopicTitle'],
+	#Post.code-08 form[name='REPLIER'] table tbody tr#topic-desc input[name='TopicDesc'],
+	#Post.code-09 form[name='REPLIER'] table tbody tr#topic-title input[name='TopicTitle'],
+	#Post.code-09 form[name='REPLIER'] table tbody tr#topic-desc input[name='TopicDesc'],
+	#Post.code-08 form[name='REPLIER'] table tbody tr#post-as select[name='post_as'],
+	#Post.code-09 form[name='REPLIER'] table tbody tr#post-as select[name='post_as'] {
 		width: 100%;
 		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
 	}
 
-	#Post.code-02 form[name='REPLIER'] textarea[name='Post'],
 	#Post.code-00 form[name='REPLIER'] textarea[name='Post'],
+	#Post.code-01 form[name='REPLIER'] textarea[name='Post'],
+	#Post.code-02 form[name='REPLIER'] textarea[name='Post'],
+	#Post.code-03 form[name='REPLIER'] textarea[name='Post'],
 	#Post.code-06 form[name='REPLIER'] textarea[name='Post'],
-	#report.act-report form[name='REPLIER'] textarea[name='message'],
-	#ST.act-ST form[name='REPLIER'] textarea[name='Post'] {
+	#Post.code-08 form[name='REPLIER'] textarea[name='Post'],
+	#Post.code-09 form[name='REPLIER'] textarea[name='Post'],
+	#ST.act-ST form[name='REPLIER'] textarea[name='Post'],
+	#report.act-report form[name='REPLIER'] textarea[name='message'] {
 		width: 100%;
 		max-width: calc(260px + (600 - 270) * (100vw - 320px) / (1020 - 320));
 	}
 
+	#Post.code-01 form[name='REPLIER'] input[name='helpbox'],
 	#Post.code-02 form[name='REPLIER'] input[name='helpbox'],
+	#Post.code-03 form[name='REPLIER'] input[name='helpbox'],
 	#Post.code-00 form[name='REPLIER'] input[name='helpbox'],
-	#Post.code-06 form[name='REPLIER'] input[name='helpbox'] {
+	#Post.code-06 form[name='REPLIER'] input[name='helpbox'],
+	#Post.code-08 form[name='REPLIER'] input[name='helpbox'],
+	#Post.code-09 form[name='REPLIER'] input[name='helpbox'] {
 		width: 100%;
 		max-width: calc(270px + (600 - 270) * (100vw - 320px) / (1020 - 320));
 		margin: 5px 0;
@@ -1209,9 +1276,13 @@ body:after {
 		display: none;
 	}
 
+	#Post.code-01 form[name='REPLIER'] table tbody tr:last-child,
 	#Post.code-02 form[name='REPLIER'] table tbody tr:last-child,
+	#Post.code-03 form[name='REPLIER'] table tbody tr:last-child,
 	#Post.code-00 form[name='REPLIER'] table tbody tr:last-child,
-	#Post.code-06 form[name='REPLIER'] table tbody tr:last-child {
+	#Post.code-06 form[name='REPLIER'] table tbody tr:last-child,
+	#Post.code-08 form[name='REPLIER'] table tbody tr:last-child,
+	#Post.code-09 form[name='REPLIER'] table tbody tr:last-child {
 		display: inline-grid;
 	}
 
@@ -1226,6 +1297,13 @@ body:after {
 
 	#topic-summary table tbody > tr:nth-child(even) > td.post1:last-child {
 		width: 100%;
+	}
+
+	#Post.code-01 #inforum-rules,
+	#Post.code-03 #inforum-rules,
+	#Post.code-08 #inforum-rules,
+	#Post.code-09 #inforum-rules {
+		display: none;
 	}
 }
 
@@ -1864,6 +1942,41 @@ tr#field-interests {
 	letter-spacing: 3px;
 }
 
+/* Main Profile Character Thread Tracker */
+
+#Profile #IC .ic-tracker-area > .maintitle {
+	font-size: var(--subHeaderFontSize);
+	text-transform: uppercase;
+	letter-spacing: 5px;
+}
+
+#Profile #IC .thread-box-wrap {
+	background-color: var(--bg-color-2);
+	border: 1px solid var(--prmcolor);
+	padding: 0px 10px 20px 20px;
+	border-radius: 10px;
+	margin: 5px;
+	height: 245px;
+	overflow: auto;
+}
+
+#Profile #IC .thread-box-wrap > .maintitle {
+	color: var(--scdcolor);
+	letter-spacing: 2px;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+/* For Webkit browsers like Chrome and Safari */
+.thread-box-wrap::-webkit-scrollbar {
+	width: 10px;
+}
+
+/* For Firefox */
+#Profile #IC .thread-box-wrap {
+	scrollbar-width: thin;
+}
+
 /****************************************
    Member List Styling
  *****************************************/
@@ -2054,7 +2167,7 @@ tr#field-interests {
 
 #guidebook-menu > ul:nth-child(2) {
 	display: grid;
-    grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 }
 
 #guidebook-menu > ul:nth-child(2) > h4 {
@@ -2642,37 +2755,44 @@ a:hover {
 .pagination a:link,
 .pagination a:visited,
 .pagination a:active {
-	border: 1px solid #800000;
-	border-radius: 3px;
-	background-color: #740300;
-	padding-left: 6px;
-	padding-right: 6px;
-	color: #ffffff;
-	text-decoration: none;
-	box-shadow: 0pt 2px 3px rgba(0, 0, 0, 0.4);
+	border: 1px solid #545454;
+    background: var(--bg-color-2);
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    color: var(--mainBodyColor);
+    font-weight: bold;
+    min-width: 5px;
+    display: inline-block;
+    font-size: 16px;
 }
 
 .pagination a:hover {
-	background: #efeeee;
+	background: var(--bg-body-color);
+	border: 1px solid #800000;
 	text-decoration: none;
-	color: var(--mainBodyColor);
+	color: var(--scdcolor);
 	box-shadow: 0pt 2px 3px rgba(0, 0, 0, 0.4);
-	background-image: url(https://files.jcink.net/themes/default/gray-gradient.png);
 }
 
 .pagination .pagination_current {
-	background: none repeat scroll 0% 0% #ffffff;
-	border: 1px solid #545454;
-	border-radius: 3px;
-	padding-left: 6px;
-	padding-right: 6px;
-	background-image: url(https://files.jcink.net/themes/default/gray-gradient.png);
+	border: 1px solid #800000;
+    text-decoration: none;
+    box-shadow: 0pt 2px 3px rgba(0, 0, 0, 0.4);
+    background: var(--bg-body-color);
+    border-radius: 3px;
+    text-align: center;
+    color: var(--scdcolor);
+    font-weight: bold;
+    min-width: 5px;
+    display: inline-block;
+    font-size: 20px;
 }
 
 .pagination_first,
 .pagination_last,
 .pagination_page {
-	background: none repeat scroll 0% 0% #740300;
+	background: var(--bg-body-color);
 	border: 1px solid #800000;
 }
 
@@ -2718,6 +2838,21 @@ td.darkrow2 {
 }
 .dlight {
 	background-color: var(--bg-body-color);
+}
+
+img[src*='Emojis'],
+img[src*='emoticons'] {
+	max-width: 20px;
+	max-height: 20px;
+}
+
+.member-inventory {
+	font-size: 20px;
+    text-align: center;
+}
+
+img[src*='IBStoreImages'] {
+	max-width: 50px;
 }
 
 /****************************************
@@ -3266,12 +3401,12 @@ img.attach {
 	}
 
 	#Profile #IC .ic-basics-area > .icmp-info > span:nth-child(9) {
-		grid-column: 1 / 3;
+		grid-column: 1;
 		grid-row: 5;
 	}
 
 	#Profile #IC .ic-basics-area > .icmp-info > span:nth-child(10) {
-		grid-column: 1 / 3;
+		grid-column: 1;
 		grid-row: 6;
 	}
 
@@ -3326,13 +3461,13 @@ img.attach {
 /* Desktop Styling */
 @media only screen and (min-width: 750px) {
 	#mobile-userlinks {
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-areas:
-			'user-info user-info user-info'
-			'view-profile my-controls guidebook'
-			'topics messages search'
-			'view-new-posts alerts members'
-			'admin-cp mod-cp discord';
+			'user-info user-info user-info user-info'
+			'view-profile my-controls guidebook .'
+			'topics messages search bank'
+			'view-new-posts alerts members store'
+			'admin-cp mod-cp discord .';
 	}
 
 	#cat_1 .frow-file-title {
@@ -3553,6 +3688,21 @@ img.attach {
 		gap: 5px;
 	}
 
+	/* Main Profile Character Thread Tracker */
+
+	#Profile #IC .ic-tracker-area {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	#Profile #IC .ic-tracker-area > div:first-child {
+		flex: 1 0 100%;
+	}
+
+	#Profile #IC .ic-tracker-area > div {
+		flex: 1;
+	}
+
 	/* Member List */
 
 	#sortMemberlist {
@@ -3581,7 +3731,7 @@ img.attach {
 	#guidebook-menu > ul:nth-child(2) {
 		display: block;
 	}
-	
+
 	#guidebook-menu > ul:nth-child(2) > h4 {
 		grid-area: unset;
 	}
@@ -3599,12 +3749,12 @@ img.attach {
 
 @media only screen and (min-width: 1025px) {
 	#mobile-userlinks {
-		grid-template-columns: 2fr 1fr 1fr 1fr;
+		grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
 		grid-template-areas:
-			'user-info view-profile my-controls guidebook'
-			'user-info topics messages search'
-			'user-info view-new-posts alerts members'
-			'user-info admin-cp mod-cp discord';
+			'user-info view-profile my-controls guidebook .'
+			'user-info topics messages search bank'
+			'user-info view-new-posts alerts members store'
+			'user-info admin-cp mod-cp discord .';
 	}
 
 	#mobile-userlinks.dropdown-menu {
@@ -3668,6 +3818,17 @@ img.attach {
 	#Profile #IC .ic-basics-area > .icmp-info > span:nth-child(14) {
 		grid-column: 3;
 		grid-row: 5;
+	}
+
+	#Profile #IC .ic-basics-area > .icmp-info > span:nth-child(15) {
+		grid-column: 1;
+		grid-row: 7;
+		border-bottom: 1px solid var(--prmcolor);
+	}
+
+	#Profile #IC .ic-basics-area > .icmp-info > span:nth-child(16) {
+		grid-column: 2 / 4;
+		grid-row: 7;
 	}
 
 	#Profile #IC .secret-staff-info > .icmp-info > span:nth-child(3) {
