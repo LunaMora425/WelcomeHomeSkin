@@ -298,3 +298,30 @@
 		window.dispatchEvent(new HashChangeEvent('hashchange'));
 	}
 </script>
+<script>
+	/* Hide non-staff pages of the IBStore */
+
+	if ($('body#store').length > 0) {
+		const body = document.querySelector('body');
+
+		const isStaff = body.classList.contains('g_4');
+
+		// Select all <a> tags
+		var links = document.querySelectorAll('a');
+
+		if (!isStaff) {
+			// Iterate over the links
+			for (var i = 0; i < links.length; i++) {
+				// If the href attribute contains "category=2" or "category=3"
+				if (links[i].href.includes('category=2') || links[i].href.includes('category=3')) {
+					links[i].classList.add('hide-profile');
+
+					if (links[i].parentNode.parentElement.tagName === 'TR') {
+						// Add 'hide-profile' class to the <tr> element
+						links[i].parentNode.parentElement.classList.add('hide-profile');
+					}
+				}
+			}
+		}
+	}
+</script>

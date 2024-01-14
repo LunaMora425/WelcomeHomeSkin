@@ -1258,6 +1258,7 @@ body:after {
 	#report.act-report form[name='REPLIER'] textarea[name='message'] {
 		width: 100%;
 		max-width: calc(260px + (600 - 270) * (100vw - 320px) / (1020 - 320));
+		font-size: var(--defaultFontSize);
 	}
 
 	#Post.code-01 form[name='REPLIER'] input[name='helpbox'],
@@ -2756,15 +2757,15 @@ a:hover {
 .pagination a:visited,
 .pagination a:active {
 	border: 1px solid #545454;
-    background: var(--bg-color-2);
-    border-radius: 3px;
-    text-align: center;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-    color: var(--mainBodyColor);
-    font-weight: bold;
-    min-width: 5px;
-    display: inline-block;
-    font-size: 16px;
+	background: var(--bg-color-2);
+	border-radius: 3px;
+	text-align: center;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+	color: var(--mainBodyColor);
+	font-weight: bold;
+	min-width: 5px;
+	display: inline-block;
+	font-size: 16px;
 }
 
 .pagination a:hover {
@@ -2777,16 +2778,16 @@ a:hover {
 
 .pagination .pagination_current {
 	border: 1px solid #800000;
-    text-decoration: none;
-    box-shadow: 0pt 2px 3px rgba(0, 0, 0, 0.4);
-    background: var(--bg-body-color);
-    border-radius: 3px;
-    text-align: center;
-    color: var(--scdcolor);
-    font-weight: bold;
-    min-width: 5px;
-    display: inline-block;
-    font-size: 20px;
+	text-decoration: none;
+	box-shadow: 0pt 2px 3px rgba(0, 0, 0, 0.4);
+	background: var(--bg-body-color);
+	border-radius: 3px;
+	text-align: center;
+	color: var(--scdcolor);
+	font-weight: bold;
+	min-width: 5px;
+	display: inline-block;
+	font-size: 20px;
 }
 
 .pagination_first,
@@ -2846,9 +2847,13 @@ img[src*='emoticons'] {
 	max-height: 20px;
 }
 
+/****************************************
+    IBStore Style
+ *****************************************/
+
 .member-inventory {
 	font-size: 20px;
-    text-align: center;
+	text-align: center;
 }
 
 img[src*='IBStoreImages'] {
@@ -3464,10 +3469,10 @@ img.attach {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-template-areas:
 			'user-info user-info user-info user-info'
-			'view-profile my-controls guidebook .'
+			'view-profile my-controls guidebook discord'
 			'topics messages search bank'
 			'view-new-posts alerts members store'
-			'admin-cp mod-cp discord .';
+			'admin-cp mod-cp . .';
 	}
 
 	#cat_1 .frow-file-title {
@@ -3751,10 +3756,10 @@ img.attach {
 	#mobile-userlinks {
 		grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
 		grid-template-areas:
-			'user-info view-profile my-controls guidebook .'
+			'user-info view-profile my-controls guidebook discord'
 			'user-info topics messages search bank'
 			'user-info view-new-posts alerts members store'
-			'user-info admin-cp mod-cp discord .';
+			'user-info admin-cp mod-cp . .';
 	}
 
 	#mobile-userlinks.dropdown-menu {
