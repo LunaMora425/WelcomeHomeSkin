@@ -180,6 +180,15 @@
 		}
 	}
 
+	/* Remove purchases area if not filled in */
+
+	if ($('body#Profile').length > 0) {
+		$('.remove:contains("No Information")').each(function () {
+			$(this).prev('span').remove();
+			$(this).remove();
+		});
+	}
+
 	/* Set Member List by account type */
 
 	if ($('body#Members').length > 0) {
@@ -251,7 +260,7 @@
 				const secondTable = tables[1];
 				var rows = secondTable.querySelectorAll('tr');
 				if ($('body').hasClass('p_0')) {
-					for (var i = 9; i < 39; i++) {
+					for (var i = 9; i < 41; i++) {
 						rows[i].classList.add('hide-profile');
 					}
 				} else {

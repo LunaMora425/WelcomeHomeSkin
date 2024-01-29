@@ -1726,6 +1726,11 @@ tr#field-interests {
 	width: 80%;
 }
 
+.awards-box img {
+	width: 25px;
+	margin: 4px;
+}
+
 .main-player-limits {
 	grid-area: main-limits;
 	width: 85%;
@@ -1890,6 +1895,18 @@ tr#field-interests {
 	letter-spacing: 5px;
 	color: var(--prmcolor);
 	font-size: 20px;
+}
+
+#Profile #IC .icmp-info-2 {
+	display: grid;
+}
+
+#Profile #IC .icmp-info-title-2 {
+	font-family: var(--subHeaderFontFamily);
+	letter-spacing: 5px;
+	color: var(--scdcolor);
+	font-size: 20px;
+	text-align: center;
 }
 
 #Profile #IC .icmp-info > span:nth-child(even) {
@@ -3173,6 +3190,13 @@ img.attach {
 	padding: 2px;
 }
 
+.postcontent img {
+	width: 100%;
+	max-width: 600px;
+	max-height: 600px;
+	object-fit: contain;
+}
+
 /* Forum Descriptions */
 .desc {
 	font-size: 11px;
@@ -3611,6 +3635,7 @@ img.attach {
 	#Profile .awards-box {
 		height: 120px;
 		margin: 5px auto;
+		max-width: 202px;
 	}
 
 	#Profile .main-player-limits {
@@ -3848,6 +3873,11 @@ img.attach {
 
 	#Profile #IC .secret-staff-info > .icmp-info > span:nth-child(7),
 	#Profile #IC .secret-staff-info > .icmp-info > span:nth-child(8) {
+		grid-column: 1 / 4;
+	}
+
+	#Profile #IC .secret-staff-info > .icmp-info > span:nth-child(9),
+	#Profile #IC .secret-staff-info > .icmp-info > span:nth-child(10) {
 		grid-column: 1 / 4;
 	}
 
