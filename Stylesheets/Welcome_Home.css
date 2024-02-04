@@ -390,11 +390,12 @@ body:after {
 #cat_5 .maintitle,
 #cat_5 .maintitle a,
 #cat_6 .maintitle,
-#cat_6 .maintitle a {
+#cat_6 .maintitle a,
+#cat_7 .maintitle,
+#cat_7 .maintitle a {
 	font-size: var(--headerFontSize);
 	letter-spacing: var(--headerLetterSpacing);
 	text-decoration: none;
-	/* font-weight: bold; */
 	color: var(--scdcolor);
 	font-family: var(--headerFontFamily);
 	background-color: unset;
