@@ -2819,6 +2819,10 @@ a:hover {
 	display: none;
 }
 
+.goto-firstunread {
+	display: flex;
+}
+
 /****************************************
     Global general table/div row styles
  *****************************************/
@@ -2969,13 +2973,9 @@ img[src*='IBStoreImages'] {
 
 #QUOTE {
 	white-space: normal;
-	font-family: Arial, sans-serif;
-	font-size: 11px;
-	color: #333;
 	background-color: var(--bg-body-color);
-	border: 0px;
-	padding: 2px;
-	border: 1px solid #555;
+	padding: 5px;
+	border: 1px solid var(--prmcolor);
 	margin-top: 2px;
 }
 
@@ -3296,7 +3296,8 @@ img.attach {
 		top: 5px;
 	}
 
-	#subforum-list.sf-1 {
+	#subforum-list.sf-1,
+	#subforum-list.sf-24 {
 		display: grid;
 		grid-column-gap: 10px;
 		grid-row-gap: 10px;
