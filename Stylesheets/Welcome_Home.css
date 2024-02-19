@@ -65,18 +65,6 @@ form {
 		--headerLetterSpacing: 37px;
 	}
 }
-/****************************************
-  Account Specific Displays
- *****************************************/
-
-/* .g_7 #OOC {
-	display: none;
-}
-
-.g_4 #IC,
-.g_6 #IC {
-	display: none;
-} */
 
 /****************************************
   Body Background & Text Style
@@ -2892,6 +2880,7 @@ img[src*='IBStoreImages'] {
 	font-family: var(--headerFontFamily);
 	text-align: center;
 	text-shadow: var(--mainTextShadow);
+	font-weight: 200;
 }
 
 .maintitle a:link,
@@ -2982,12 +2971,10 @@ img[src*='IBStoreImages'] {
 #CODE {
 	white-space: normal;
 	font-family: Courier, Courier New, Verdana, Arial;
-	font-size: 11px;
-	color: #333;
 	background-color: var(--bg-body-color);
 	border: 0px;
 	padding: 2px;
-	border: 1px solid #555;
+	border: 1px solid var(--prmcolor);
 	margin-top: 2px;
 }
 
@@ -3257,6 +3244,137 @@ img.attach {
 	color: #f00;
 	font-weight: bold;
 	background-color: #ff0;
+}
+
+/****************************************
+  BBCode Styles
+ *****************************************/
+
+/* <uniquifier>: Use a uniquifier for the class name
+<weight>: Use a value from 400 to 700 
+
+.kode-mono-<uniquifier> {
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+*/
+
+/* 
+<uniquifier>: Use a uniquifier for the class name
+<weight>: Use a value from 300 to 800
+
+.open-sans-<uniquifier> {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+*/
+
+/* 
+<uniquifier>: Use a uniquifier for the class name
+<weight>: Use a value from 100 to 700
+
+.antonio-<uniquifier> {
+  font-family: "Antonio", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+*/
+
+.w9 {
+	font-weight: 900;
+}
+
+.w8 {
+	font-weight: 800;
+}
+
+.w7 {
+	font-weight: 700;
+}
+
+.w6 {
+	font-weight: 600;
+}
+
+.w5 {
+	font-weight: 500;
+}
+
+.w3 {
+	font-weight: 300;
+}
+
+.w2 {
+	font-weight: 200;
+}
+
+.w1 {
+	font-weight: 100;
+}
+
+.roll-style {
+	font-family: 'Kode Mono', monospace;
+	font-weight: 700;
+	text-align: center;
+}
+
+.default-h1 {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.default-h2 {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.primary-h1,
+.secondary-h1,
+.tertiary-h1 {
+	padding: 0px 8px 8px;
+	font-family: var(--headerFontFamily);
+	text-align: center;
+	text-shadow: var(--mainTextShadow);
+	font-weight: 200;
+	font-size: 2em;
+	text-transform: uppercase;
+}
+
+.primary-h2,
+.secondary-h2,
+.tertiary-h2 {
+	padding: 0px 8px 8px;
+	font-family: var(--headerFontFamily);
+	text-align: center;
+	text-shadow: var(--mainTextShadow);
+	font-weight: 200;
+	font-size: 1.5em;
+	text-transform: uppercase;
+}
+
+.primary-h1,
+.primary-h2 {
+	color: var(--prmcolor);
+}
+
+.secondary-h1,
+.secondary-h2 {
+	color: var(--scdcolor);
+}
+
+.tertiary-h1,
+.tertiary-h2 {
+	color: var(--scdcolor-2);
 }
 
 /****************************************
