@@ -334,3 +334,28 @@
 		}
 	}
 </script>
+<script>
+	/* JCINK CODE AREA MODIFICATION v2 BY JAWN
+	https://backtoneverland.jcink.net/
+	updated by Luna */
+
+	if ($('td#CODE').length > 0) {
+		$(function () {
+			$('td#CODE').each(function () {
+				$(this).find('br').replaceWith('\n');
+
+				$(this).wrapInner("<div class='code-inner'/>");
+				$(this).wrap("<fieldset id='code-wrapper'/>");
+				$(this).parent().append('<legend>Highlight Code</legend>');
+			});
+		});
+		$(function () {
+			$('fieldset#code-wrapper legend').click(function () {
+				var range = document.createRange();
+				range.selectNode($(this).siblings('td').children('.code-inner')[0]);
+				window.getSelection().removeAllRanges();
+				window.getSelection().addRange(range);
+			});
+		});
+	}
+</script>
