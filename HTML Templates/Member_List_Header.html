@@ -18,12 +18,16 @@
 
 <script src="https://files.jcink.net/uploads2/fizzyelf/sharedresources/memberlistFilters2.js"></script>
 <script>
-	setUpNameSearch();
-	setUpFilters({
-		Display_As_Dropdown: false,
-		Multiple_Selections: false,
-		Filter_Lists: ['Role', 'Player', 'FC', 'Job'],
-		No_Value_Label: 'N/A',
+	$(document).ready(function () {
+		setUpNameSearch();
+		setUpFilters({
+			Display_As_Dropdown: false,
+			Multiple_Selections: false,
+			Filter_Lists: ['Role', 'Player', 'FC', 'Job'],
+			No_Value_Label: 'N/A',
+		});
+		setUpSortBy();
+
+		$('span[style="font-size: 90%; font-family: roboto, verdana, arial, sans"]').appendTo('.skin-info');
 	});
-	setUpSortBy();
 </script>

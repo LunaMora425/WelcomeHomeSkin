@@ -4000,6 +4000,8 @@ phc {
 	#Profile .main-player-limits {
 		width: 90%;
 		margin-top: 10px;
+		max-height: 100px;
+		overflow: auto;
 	}
 
 	/* IC Main Profile */
