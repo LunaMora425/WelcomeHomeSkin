@@ -165,6 +165,9 @@
 		const bodyMemberId = Array.from(body.classList)
 			.find((cls) => cls.startsWith('m_'))
 			.substring(2);
+		const bodyParentId = Array.from(body.classList)
+			.find((cls) => cls.startsWith('p_'))
+			.substring(2);
 		const profileClassMemberId = Array.from(profileClass.classList)
 			.find((cls) => cls.startsWith('m_'))
 			.substring(2);
@@ -173,9 +176,12 @@
 			.substring(2);
 
 		const isStaff = body.classList.contains('g_4');
+		const isMyProfile = bodyMemberId === profileClassMemberId;
+		const isMyCharacter = bodyMemberId === profileClassParentId;
+		const weShareParent = bodyParentId !== '0' && bodyParentId === profileClassParentId;
 		const elementToHide = document.querySelector('.secret-staff-info');
 
-		if (isStaff || bodyMemberId === profileClassMemberId || bodyMemberId === profileClassParentId) {
+		if (isStaff || isMyProfile || isMyCharacter || weShareParent) {
 			elementToHide.classList.remove('hide-profile');
 		}
 	}
@@ -356,6 +362,45 @@
 				window.getSelection().removeAllRanges();
 				window.getSelection().addRange(range);
 			});
+		});
+	}
+</script>
+
+<script>
+	/* Secrets BBCode box, formatted so you and staff can view your own, but no one else's */
+	if ($('body#ST').length > 0 && document.querySelector('.post-secrets-area')) {
+		const postSecretsAreas = document.querySelectorAll('.post-secrets-area');
+		postSecretsAreas.forEach((postSecretsArea) => {
+			const miniProfileParentClass1 = postSecretsArea.closest('.post-wrapper').querySelector('.mini-p-1');
+			const postRowMemberClass = postSecretsArea.closest('.post-wrapper');
+			const body = document.querySelector('body');
+
+			const bodyMemberId = Array.from(body.classList)
+				.find((cls) => cls.startsWith('m_'))
+				.substring(2);
+			const bodyParentId = Array.from(body.classList)
+				.find((cls) => cls.startsWith('p_'))
+				.substring(2);
+			const miniProfileParentId = Array.from(miniProfileParentClass1.classList)
+				.find((cls) => cls.startsWith('p_'))
+				.substring(2);
+			const postRowMemberId = Array.from(postRowMemberClass.classList)
+				.find((cls) => cls.startsWith('m_'))
+				.substring(2);
+
+			const isStaff = body.classList.contains('g_4');
+			const isPoster = bodyMemberId === postRowMemberId;
+			const isMyPlayer = bodyParentId === postRowMemberId;
+			const isMyCharacter = bodyMemberId === miniProfileParentId;
+			const weShareParent = bodyParentId !== '0' && bodyParentId === miniProfileParentId;
+
+			const hiddenSecretArea = postSecretsArea.querySelector('.secret-text-display');
+			const visibleSecretArea = postSecretsArea.querySelector('.not-secret-display');
+
+			if (isStaff || isPoster || isMyPlayer || isMyCharacter || weShareParent) {
+				hiddenSecretArea.classList.remove('hide-profile');
+				visibleSecretArea.classList.add('hide-profile');
+			}
 		});
 	}
 </script>

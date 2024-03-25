@@ -102,16 +102,12 @@ body:after {
  *****************************************/
 
 #mobilenav .mcp-0,
-#desktopnav .mcp-0,
 #mobilenav .acp-0,
-#desktopnav .acp-0,
-#mobilenav .m-2,
-#desktopnav .m-2 {
+#mobilenav .m-2 {
 	display: none;
 }
 
-#mobilenav .g-2,
-#desktopnav .g-2 {
+#mobilenav .g-2 {
 	display: block !important;
 }
 
@@ -126,10 +122,6 @@ body:after {
 .icons {
 	font-size: 20px;
 	width: 30px;
-}
-
-#desktopnav {
-	display: none;
 }
 
 #mobilenav {
@@ -3176,7 +3168,8 @@ img.attach {
 	padding: 2px;
 }
 
-.postcontent img {
+.postcontent img,
+#Post.code-01 .postcolor img {
 	width: 100%;
 	max-width: 600px;
 	max-height: 600px;
@@ -3614,6 +3607,50 @@ phc {
 .translate-text:hover::after {
 	visibility: visible;
 	opacity: 1;
+}
+
+.dev-img-one {
+	width: calc(100% - 10px);
+	background: var(--bg-color-2);
+	padding: 5px;
+	border-radius: 5px 5px 10px 10px;
+	margin-bottom: 15px;
+}
+
+.dev-img-container {
+	padding: 10px;
+	border: 1px solid var(--prmcolor);
+	border-radius: 5px 5px 10px 10px;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	grid-gap: 10px;
+}
+
+.dev-img-container img {
+	width: 100%;
+	border-radius: 5px;
+}
+
+.post-secrets-area .not-secret-display {
+	padding: 0px 5px 20px;
+	text-align: center;
+	background: var(--bg-color-2);
+	border: 1px solid var(--bg-body-color);
+	border-radius: 5px;
+	box-shadow: 2px 2px 10px var(--bg-color-2);
+}
+
+.not-secret-display .secrets-eye {
+	width: 100px;
+	height: 100px;
+	background: var(--bg-color-2) url(https://files.jcink.net/uploads2/welcomehomeroleplay/Icons/FirstWave.png) no-repeat;
+	background-size: cover;
+	margin: auto;
+}
+
+.not-secret-display span {
+	font-family: 'Kode Mono';
+	text-transform: capitalize;
 }
 
 /****************************************
@@ -4135,6 +4172,16 @@ phc {
 	.guidebook-content {
 		height: 570px;
 		overflow-y: auto;
+	}
+
+	/* BBCode Styling */
+	.dev-img-container {
+		padding: 10px;
+		border: 1px solid var(--prmcolor);
+		border-radius: 5px 5px 10px 10px;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 10px;
 	}
 }
 
