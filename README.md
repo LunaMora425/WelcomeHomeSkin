@@ -8,7 +8,7 @@ Site graphics and color scheme provided by Winter.
 
 Skin design and coding by Luna of Barbermonger.
 
-Various javascript codes by Cory of Jcodes, FizzyElf of FizzyElf Codes, and others listed in the [USER_SCRIPTS](Webpages\USER_SCRIPTS.html) file.
+Various javascript codes by Cory of Jcodes, FizzyElf of FizzyElf Codes, and others listed in the [USER_SCRIPTS](Webpages/USER_SCRIPTS.html) file.
 
 Interactive Map code from the Leaflet library.
 
