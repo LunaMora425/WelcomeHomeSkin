@@ -361,6 +361,7 @@
 				.substring(2);
 
 			const isStaff = body.classList.contains('g_4');
+			const isNotGuest = !body.classList.contains('g_2');
 			const isPoster = bodyMemberId === postRowMemberId;
 			const isMyPlayer = bodyParentId === postRowMemberId;
 			const isMyCharacter = bodyMemberId === miniProfileParentId;
@@ -369,9 +370,11 @@
 			const hiddenSecretArea = postSecretsArea.querySelector('.secret-text-display');
 			const visibleSecretArea = postSecretsArea.querySelector('.not-secret-display');
 
-			if (isStaff || isPoster || isMyPlayer || isMyCharacter || weShareParent) {
-				hiddenSecretArea.classList.remove('hide-profile');
-				visibleSecretArea.classList.add('hide-profile');
+			if (isNotGuest) {
+				if (isStaff || isPoster || isMyPlayer || isMyCharacter || weShareParent) {
+					hiddenSecretArea.classList.remove('hide-profile');
+					visibleSecretArea.classList.add('hide-profile');
+				}
 			}
 		});
 	}
