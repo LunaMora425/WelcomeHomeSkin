@@ -673,34 +673,31 @@
 	/* Navigate tabs of the Guidebook */
 
 	if ($('body#Pages.act-Pages').length > 0) {
-		function locationHashChanged() {
-			const tabSelected = location.hash.replace('#', '');
-			if (tabSelected === 'townmap') {
-				setTimeout(function () {
-					map.invalidateSize();
-				}, 1);
-			}
-			const guidebookContents = document.querySelectorAll('.guidebook-content');
-			const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
+		const guidebookContents = document.querySelectorAll('.guidebook-content');
+		const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
 
-			guidebookContents.forEach((guidebookContent) => {
-				guidebookContent.classList.remove('active');
+		guidebookLinks.forEach((guidebookLink) => {
+			guidebookLink.addEventListener('click', function (e) {
+				e.preventDefault();
+				const tabSelected = this.getAttribute('href').replace('#', '');
+
+				guidebookContents.forEach((guidebookContent) => {
+					guidebookContent.classList.remove('active');
+				});
+
+				guidebookLinks.forEach((guidebookLink) => {
+					guidebookLink.classList.remove('active');
+				});
+
+				this.classList.add('active');
+				document.getElementById(tabSelected).classList.add('active');
+
+				if (tabSelected === 'townmap') {
+					setTimeout(function () {
+						map.invalidateSize();
+					}, 1);
+				}
 			});
-
-			guidebookLinks.forEach((guidebookLink) => {
-				guidebookLink.classList.remove('active');
-			});
-
-			document.querySelector("a[href='#" + tabSelected + "']").classList.add('active');
-			document.getElementById(tabSelected).classList.add('active');
-		}
-
-		window.onhashchange = locationHashChanged;
-
-		// When the document loads, we manually trigger a onHashChange event
-		// because when the page first loads, there is no hash in the location to trigger on
-		$(document).ready(function () {
-			window.dispatchEvent(new HashChangeEvent('hashchange'));
 		});
 	}
 </script>
