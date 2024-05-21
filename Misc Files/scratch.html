@@ -1,685 +1,198 @@
-<script>
-	function onEachFeature(feature, layer, latlng) {
-		// does this feature have a property named popupContent?
-		if (feature.properties && feature.properties.popupContent) {
-			layer.bindPopup(feature.properties.popupContent);
-		}
-
-		// else if it has "text" - we use that
-		else if (feature.properties && feature.properties.text) {
-			layer.bindPopup(feature.properties.text);
-		}
-
-		// else if it has "referenceFormID" (Mappalachia) - we use that
-		else if (feature.properties && feature.properties.referenceFormID) {
-			layer.bindPopup(feature.properties.referenceFormID);
-		}
-	}
-
-	function AddGeoJSONFeature(url, target) {
-		fetch(url)
-			.then(function (response) {
-				return response.json();
-			})
-			.then(function (data) {
-				L.geoJSON(data, {
-					onEachFeature: onEachFeature,
-					pointToLayer: function (feature, latlng) {
-						if (feature.properties && feature.properties.circle) {
-							var circleOptions = {
-								radius: feature.properties.circle,
-							};
-							return L.circle(latlng, circleOptions);
-						} else {
-							return L.marker(latlng);
-						}
-					},
-				}).addTo(target);
-			});
-	}
-
-	var bounds = [
-		[-2048, 2048],
-		[2048, -2048],
-	];
-
-	var Map_CrescentCity = L.imageOverlay(
-		'https://files.jcink.net/uploads2/otherworldroleplay/map/citymapsmall.png',
-		bounds,
-	);
-
-	var Map_Caebus = L.imageOverlay('https://files.jcink.net/uploads2/otherworldroleplay/map/4area.png', bounds);
-
-	var Map_Fengari = L.imageOverlay('https://files.jcink.net/uploads2/otherworldroleplay/map/3area.png', bounds);
-
-	var Map_Ithil = L.imageOverlay('https://files.jcink.net/uploads2/otherworldroleplay/map/2area.png', bounds);
-
-	var Map_Lunaris = L.imageOverlay('https://files.jcink.net/uploads2/otherworldroleplay/map/1area.png', bounds);
-
-	var baseMaps = {
-		CrescentCity: Map_CrescentCity,
-	};
-
-	var overlayMaps = {
-		Caebus: Map_Caebus,
-		Fengari: Map_Fengari,
-		Ithil: Map_Ithil,
-		Lunaris: Map_Lunaris,
-	};
-
-	var map = L.map('map', {
-		crs: L.CRS.Simple,
-		minZoom: -2,
-		maxZoom: -0.2,
-		layers: [Map_CrescentCity],
-	});
-
-	var popup = L.popup();
-
-	function onMapClick(e) {
-		popup
-			.setLatLng(e.latlng)
-			.setContent('You clicked the map at ' + e.latlng.toString())
-			.openOn(map);
-	}
-
-	map.on('click', onMapClick);
-
-	map.fitBounds(bounds);
-
-	L.control.layers(baseMaps, overlayMaps).addTo(map);
-
-	var brightnessSlider = document.getElementById('brightness-slider');
-	var brightnessSpan = document.getElementById('brightness-value');
-
-	brightnessSlider.addEventListener('input', function (e) {
-		var brightnessValue = e.target.value;
-		brightnessSpan.textContent = brightnessValue + '%';
-
-		var arr = document.getElementsByClassName('leaflet-image-layer');
-		arr[0].style.filter = 'brightness(' + brightnessValue + '%)';
-	});
-
-	map.addControl(new L.Control.Fullscreen());
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/groupimages/serpent.png',
-		iconSize: [45, 45],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Aeon',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([1460.28125, -290], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/89/08/b1/8908b12811b3e396fdbab952ba94b4e0.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Aeon</b> <p>A magical school that invites all suits to attend. Naturally, the largest group to wander the dark and shifting halls of Aeon belong to the suit of wands. Magic instructions and lessons are structured over the course of several years, the student body split into <i>houses</i>. The school is in possession of great power, deep diving into research and learning more about Otherworld, rivaling the Versalies at every turn.</p> <p>The school is perched high within the city, looking over Crescent City from nearly its highest point. The grounds are gated, surrounded by gardens and smaller buildings. In the darkness the looming structure stabs into the glittering night, the blue-black stone that Aeon is built of is slightly reflective, the lights of the city bouncing off of it and making it appear to have a great deal more windows than it does.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/groupimages/newgroup.png',
-		iconSize: [45, 45],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Vedas',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([221, -354.48968], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/5d/15/9b/5d159b01e0eb5c45065130b31034e6f6.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Vedas Manor</b> <p>The large building, with glass stained in shades of greens and blues that glow a sickly yellow green when lit from within, the structure oddly sapped in curving knots. Though the home of Beau Vedas, the manor is open to all members of the Vedas. <a href="https://otherworldroleplay.jcink.net/index.php?showtopic=56">Read more about Vedas here.</a></p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/locations.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'The Pit',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([1402.28125, 176], markerOptions);
-
-	marker
-		.bindPopup(
-			'<p><b>The Pit</b> is a walled in collapsed portion of the city. The rumor is that a building used to be there, until one day it was not. And in its place, a vacant tear of brick and stone. Tunnels barely large enough for the average person to walk through feed into the shadows of the Pit. Hills curl up and wrinkle at the bottom, reptilian creatures creeping through the shallow valleys. There is not much use for the place, save for those who want to be rid of something - or someone...</p> ',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/locations.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'The Glade',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([544.28125, -410], markerOptions);
-	marker
-		.bindPopup(
-			'<p><b>The Glade</b> Towering walls enclose a glittering nature scene, a loosely paved trail coils through the darkened fields and shadowed woodlands. The Glade is guarded to make sure that the iron gates remain closed to keep the protected wildlife in. A metal honeycomb sphere scoops into the night sky and balloons over the gardens. Peppered along the path are street lights that fan out like mushrooms lighting a string of soft yellow dots in the shadows. The patch of land is undeniably wondrous and yet... the guards tell everyone who passes through the gates that they should stay on the path. Perhaps there is a reason for that...</p> <p>Aeon oversees the care of the Glade, its students often found along the trail or stumbling out from the brush. Many students have said that every time they visit, the path leads them a different way even though there has always been only one. No one quite knows what is exactly done here but what everyone is told is that vital plants and animals are studied. Removing anything from The Glade is forbidden.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/fsc_04_PNG.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'CAEBUS',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([1052.1875, -426.955965], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://files.jcink.net/uploads2/otherworldroleplay/skinimages/2cdfee8b_e214_4b6a_b969_4e98be5bbe0f.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><h3>Caebus</h3><p>Vast and opulent in the most practical sort of way, Caebus is what is born when too many terribly clever people get together. The towers here stretch tall, blotted out the moonlight and casting the streets in a shadow broken only by a peppering of streetlamps. The district echoes with a metallic heartbeat, the steadying tick of mechanics that exists just beneath every other sound. Otherworld chose a gothic muse for the architecture here, giving everything a grim, sharp look. Caebus is known for its scholars and schools. It’s home to the biggest magic school Crescent City has to offer.</p><p><b>Affiliated suite:</b> Wands</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/fsc_04_PNG.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'FENGARI',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([12.1875, -682.76161], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://files.jcink.net/uploads2/otherworldroleplay/skinimages/Paris_Rooftops.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><h3>Fengari</h3><p>With its limestone walls and terracotta roofs, it’s easy to picture Fengari bathed in the warm light of a coastal sun. By Crescent City’s standards, Fengari is bright. The moon paints it the loveliest shades of lavender and blue, coloring the many gardens and open terraces that fill the district. Beauty and wealth define Fengari, but the twisting underworld of greed and deceit that exists beneath its charming veneer is what truly holds the power.</p><p><b>Affiliated suite:</b> Pentacles</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/fsc_04_PNG.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'ITHIL',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([-847.8125, -479.731151], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://files.jcink.net/uploads2/otherworldroleplay/skinimages/Characters_book__Lords__Dukes_and_the_Ghost___Towns_and_villages_of_the_Empires.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><h3>Ithil</h3><p>Bloated with the self-importance and grandiosity of its resident, Ithil seems to be growing ever upwards as a district. Its buildings reach heights beyond architectural logic, cramming as many homes and businesses atop of one another as can be imagined. Theaters, bookstores, and music halls are Ithil’s bread and butter. It’s home to the artists, actors, and lovers of Crescent City. It’s not uncommon to hear trailing bits of discordant music floating from nearly every open window, spilling a never-ending symphony into the darkened streets at the city’s streets. The lower you go in Ithil, the worse the city gets. At the very bottom you will find the most repugnant taverns, brothels, and entertainment halls.</p><p><b>Affiliated suite:</b> Cups</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/fsc_04_PNG.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'LUNARIS POINT',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([-1503.8125, 171.904713], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://files.jcink.net/uploads2/otherworldroleplay/skinimages/Alley_at_night__zhouxianglan.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><h3>Lunaris Point</h3><p>The people of Lunaris Point don’t put much stock into appearances. Their district has everything it needs, but most of the area’s wealth is funneled into the crafting of weapons and armor. It can be described as spartan, at best, and simple, at worst. The only grandiose thing in Lunaris Point is the coliseum, a massive marble structure dedicated to every sort of tournament conceivable. Aside from its fighters, the district prides itself on having the best healers in Crescent City. There’s a massive hospital complex located just a few steps away from the coliseum.</p><p><b>Affiliated suite:</b> Swords</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/locations.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Shadow Pass',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([1123.8125, -509.867809], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://files.jcink.net/uploads2/alterrpg/img/newmapimages/winter_forest__Min_Yum.png); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><p><b>Shadow Pass</b> is a wide-set bridge that crosses over a hole that punches through the city, the dark haze of the void glitters back up to anyone looking into the abyss. </p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/locations.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Lire',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([451.8125, -887.761696], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/56/40/15/5640156e507a5dd417ee16352ce2122d.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><p><b>Lire</b> The largest shopping area of the city, its much more reformed than some of the other markets that scatter Crescent City. You will be hard pressed to find less than savory business here. Much of the shops selling clothing, food, and accessories. Even a few ritzy potion shops belonging to fortune tellers pepper the streets of Lire.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/locations.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'The Hill',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([-66.1875, -581.607553], markerOptions);
-	marker
-		.bindPopup(
-			'<p><b>The Hill</b> Like a mountain flecked with lights, much of Fengari curls upwards like a stretching cat. The hill of buildings are called The Hill, its underbelly plays host to dark market networking, organized fighting, gambling, and substance abuse. There are a handful of entrances into The Hill, the main one is as marked on the map.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/locations.png',
-		iconSize: [30, 30],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Ghost Row',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([-128.1875, -392.257636], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/a4/65/f6/a465f6996f21f13586d2140a8c1445b2.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div><p><b>Ghost Row</b> A hazy portion of Fengari that is constantly plagued with ghosts and shadow creatures. To the point where iron gates have been fashioned on either end of the street to keep people out - or at least discourage them... Tangles of wire stretch like cobwebs from one rooftop to the next, zigzagging in chaotic patterns as they string up lights that buzz and flicker.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'White Lotus',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([872.5625, -1056], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/47/2e/e8/472ee884b65e6e0303dce41592613ca3.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>White Lotus</b> <p>Music and clockwork curl into smoky knots, dark lamenting notes hang in the air. The tavern is well known for its food, drink, and entertainment. The owner has a dark reputation as a suit of wands magic user, her vampirism and quiet violence is no secret. Clients and guests tend to quickly overlook the seedy undercurrents of the White Lotus, entranced by the locations rich charm. </p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Mortique Brew Point',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-
-	// Start Marker
-
-	var marker = L.marker([596.875, -1052.838434], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/750x/d2/ad/35/d2ad352663a3ee6d319fdada8c4c6c13.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Mortique Brew Point</b> <p>A warm and cozy espresso and liquor shop. They sell fresh grounds as well but most come here to kick back and relax, hissing across Lire at Willow Wisp. Mortique, the owner of the coffee shop has nothing but bad things to say about Willow. Anyone looking for overpriced leaf water will quickly find themselves ousted and sent to Willow Wisp.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Clock Tower',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([1813.8125, 629.472054], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/736x/27/07/e0/2707e0fcd29c3ebdd1866977080fbbf1.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Clock Tower</b>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Willow Wisp',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([371.8125, -685.792972], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/9e/4b/e1/9e4be1afe6982a61daea66063b675235.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Willow Wisp</b> <p>A quaint little plant and garden shop. Willow, the owner of the shop creates healing tonics and potions. Connected to the side of the shop is a garden that she tends to, tea tables are set up in the grass beneath canopies for customers to sit at enjoy a cup of herbal tea. Ask for coffee and she will tell you to get that garbage at Mortiques.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Pentacle Potions',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([489.8125, -1391.314903], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/df/c4/33/dfc43384354a613d375577534effb6ee.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Pentacle Potions</b> <p>One of the more unsavory potion shops in Otherworld. The shelves line the walls in a mass of clutter, corked bottles of all sorts. In a way it seems as though the potions are poured into whatever glass reservoir the shop keep can find. Eclectic assortments of fill every available space, making it impossible to find anything. However, when asked the shop keep named Penny seems to know where everything is at.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Theater Hill',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([23.8125, -861.766164], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/21/71/d0/2171d0518efe7749f242694c4eea79d1.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Theater Hill</b> <p>A theater house that hosts performances that range from plays, musical artists, and talent acts. </p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Fabled Fennel',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([-821, -994.73452], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/a8/61/3e/a8613e8a896f82f5f767e2055d488099.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Sage and Shadows</b> <p>coming soon </p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Cosmic Karma',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([159.094722, -296.680579], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://i.pinimg.com/564x/f0/5f/f6/f05ff6c6a0f752d443affd028fe279f3.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Cosmic Karma</b> <p>A whimsical clubhouse run by Vedas. The visible structure is a coiling tower of metals, dull limestone, and teardrop windows. The underbelly of Karma is filled with the seedy undertakings of group well known for their volatile nature. Music hums in every room, deep notes unleash hair raising vibrations into the hazy atmosphere from the sweet smoke of red lotus flowers. People generally come here for drugs and drinks and sex, often leaving with more than they bargained for.</p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-
-	// Icon Options
-	var iconOptions = {
-		iconUrl: 'https://files.jcink.net/uploads2/otherworldroleplay/map/buildings.png',
-		iconSize: [25, 25],
-	};
-	// Creating a custom icon
-	var customIcon = L.icon(iconOptions);
-
-	// Creating Marker Options
-	var markerOptions = {
-		title: 'Nine Tails Inn',
-		clickable: true,
-		draggable: false,
-		icon: customIcon,
-	};
-	// Start Marker
-
-	var marker = L.marker([-1580, 392], markerOptions);
-	marker
-		.bindPopup(
-			'<div style="float:left; position:relative; z-index:3; width:100px; height:100px; margin:10px;"><div style="position:absolute; top:0; left:0; z-index:5; border-radius:50%; width:100px; height:100px; background-image:url(https://images2.imgbox.com/7f/55/MBZyBGsu_o.jpg); background-size:cover; background-color:#7f7f7f;"> </div> <div style="position:absolute; top:0; left:0; margin-left:-10px; margin-top:-10px; z-index:6;"><img src="https://files.jcink.net/uploads2/alterrpg/img/avatarborder.png" style="max-width:120px; max-height:120px;"></div></div> <b>Nine Tails Inn</b> <p>Nine Tales Inn is a simple, rustic wood and stone building whose humble outside belies its vast inside. The Inn welcomes almost anyone, even sporting a handful of permanent residents. Some of the oldest rooms have been repurposed to act as storage or safety deposit boxes. Be careful not to take a wrong turn, as there are dark corners and long hallways within the Inn that are best left undisturbed. <a href="https://otherworldroleplay.jcink.net/index.php?showtopic=106">Read more...</a></p>',
-		)
-		.openPopup();
-	marker.addTo(map);
-
-	// End Marker
-</script>
+<form
+ action="/index.php?act=Search&CODE=01"
+ method="post"
+ name="sForm"
+ onsubmit='document.getElementById("perf_search").disabled="true"'>
+ <div id="search-grid">
+  <div class="keyword-search-heading">
+   <div class="maintitle">Search Keywords</div>
+  </div>
+  <div class="keyword-search">
+   <div class="pformstrip">search by keywords</div>
+   <input
+    type="text"
+    maxlength="100"
+    name="keywords"
+    id="keywords"
+    class="forminput" />
+   <div>
+    <label for="keywords">Enter a keyword or phrase to search by.</label>[<a
+     href="#"
+     title="Find out how to improve your search with boolean operators"
+     onclick="win_pop()"
+     >Advanced Usage Help</a
+    >]
+   </div>
+  </div>
+  <div class="member-search">
+   <div class="pformstrip">filter by member name (optional)</div>
+   <input type="text" maxlength="100" name="namesearch" class="forminput" />
+   <div>
+    <input
+     type="checkbox"
+     name="matchtopics"
+     id="matchtopics"
+     value="1"
+     class="checkbox" />
+    <label for="matchtopics"> Search topics started by this member only </label>
+   </div>
+  </div>
+  <div class="search-options-heading">
+   <div class="maintitle">Search Options</div>
+  </div>
+  <div class="search-where">
+   <div class="pformstrip">search where</div>
+   ${newSelect.outerHTML}
+   <div>
+    <input
+     type="checkbox"
+     name="searchsubs"
+     value="1"
+     id="searchsubs"
+     checked="checked" />
+    <label for="searchsubs">
+     Search in child forums if sub category is chosen?
+    </label>
+   </div>
+  </div>
+  <div class="refine-search">
+   <div class="pformstrip">refine search</div>
+   <div class="fieldset-search-box">
+    <fieldset class="search">
+     <legend><strong>Search posts from...</strong></legend>
+     <select name="prune" class="forminput">
+      <option value="1">Today</option>
+      <option value="7">7 days ago and...</option>
+      <option value="30">30 days ago and...</option>
+      <option value="60">60 days ago and...</option>
+      <option value="90">90 days ago and...</option>
+      <option value="180">180 days ago and...</option>
+      <option value="365">365 days ago and...</option>
+      <option value="0" selected="selected">Any date</option>
+     </select>
+     <div>
+      <label>
+       <input
+        type="radio"
+        name="prune_type"
+        id="prune_older"
+        value="older"
+        class="radiobutton" />
+       Older
+      </label>
+     </div>
+     <div>
+      <label>
+       <input
+        type="radio"
+        name="prune_type"
+        id="prune_newer"
+        value="newer"
+        class="radiobutton"
+        checked="checked" />
+       Newer
+      </label>
+     </div>
+    </fieldset>
+   </div>
+   <div class="fieldset-search-box">
+    <fieldset class="search">
+     <legend><strong>Sort results by...</strong></legend>
+     <select name="sort_key" class="forminput">
+      <option value="last_post">Last Posting Date</option>
+      <option value="posts">Number of Replies</option>
+      <option value="starter_name">Poster Name</option>
+      <option value="forum_id">Forum Name</option>
+     </select>
+     <div>
+      <label
+       ><input
+        type="radio"
+        name="sort_order"
+        id="sort_desc"
+        class="radiobutton"
+        value="desc"
+        checked="checked" />
+       descending order
+      </label>
+     </div>
+     <div>
+      <label
+       ><input
+        type="radio"
+        name="sort_order"
+        id="sort_asc"
+        class="radiobutton"
+        value="asc" />
+       ascending order
+      </label>
+     </div>
+    </fieldset>
+   </div>
+   <div class="fieldset-search-box">
+    <fieldset class="search">
+     <legend><strong>Search Where</strong></legend>
+     <div>
+      <label
+       ><input
+        type="radio"
+        name="search_in"
+        class="radiobutton"
+        id="search_in_posts"
+        value="posts"
+        checked="checked" />
+       Search entire post
+      </label>
+     </div>
+     <div>
+      <label
+       ><input
+        type="radio"
+        name="search_in"
+        class="radiobutton"
+        id="search_in_titles"
+        value="titles" />
+       Search titles only
+      </label>
+     </div>
+    </fieldset>
+   </div>
+   <div class="fieldset-search-box">
+    <fieldset class="search">
+     <legend><strong>Result Type</strong></legend>
+     <div>
+      <label
+       ><input
+        type="radio"
+        name="result_type"
+        class="radiobutton"
+        value="topics"
+        id="result_topics"
+        checked="checked" />
+       Show results as topics
+      </label>
+     </div>
+     <div>
+      <label
+       ><input
+        type="radio"
+        name="result_type"
+        class="radiobutton"
+        value="posts"
+        id="result_posts" />
+       Show results as posts
+      </label>
+     </div>
+    </fieldset>
+   </div>
+  </div>
+  <div class="submit-search-form">
+   <input
+    type="submit"
+    value="Perform the search"
+    class="forminput"
+    id="perf_search"
+    onclick='document.getElementById("perf_search").value="Performing search... please wait"' />
+  </div>
+ </div>
+</form>
