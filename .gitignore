@@ -1,3 +1,4 @@
 # ignore all files in the minified folder
 min/
+# ignore my scratch file for random formatting stuff
 Misc Files/scratch.html
