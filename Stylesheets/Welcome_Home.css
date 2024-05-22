@@ -1984,6 +1984,10 @@ tr#field-interests {
 	filter: grayscale(1);
 }
 
+#main-profile-grid-wrapper.g_8 > #IC > div.ic-tracker-area > div:nth-child(2) {
+	display: none;
+}
+
 #main-profile-grid-wrapper.g_8 > #IC > .maintitle {
 	font-size: var(--headerFontSize);
 }

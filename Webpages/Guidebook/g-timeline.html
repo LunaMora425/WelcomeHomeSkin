@@ -1,14 +1,17 @@
 <h1>Site Timeline</h1>
 <p>
-	The following is a rough guideline for how events have shaken out so far in Home, along with when characters actually
-	arrived. Note this is <b>sitewide</b>; for individual character timelines please see the
-	<a href="?showforum=21">Dev Area</a>. Got something to add? Drop it in <b>#character-help</b> in the discord.
+ The following is a rough guideline for how events have shaken out so far in
+ Home, along with when characters actually arrived. Note this is
+ <b>sitewide</b>; for individual character timelines please see the
+ <a href="?showforum=21">Dev Area</a>. Got something to add? Drop it in
+ <b>#character-help</b> in the discord.
 </p>
 
 <h2>January</h2>
 <p>
-	Residents of the First Wave wake up in the morning of January 19th, 2023, in their beds in Home. Food, water, clothes,
-	shelter, and heat are all provided for.
+ Residents of the First Wave wake up in the morning of January 19th, 2023, in
+ their beds in Home. Food, water, clothes, shelter, and heat are all provided
+ for.
 </p>
 
 <h3 style="text-align: left">Arrivals</h3>
@@ -16,15 +19,17 @@
 
 <h2>February</h2>
 <ul>
-	<li>
-		Residents begin to explore Home in earnest. A street lamp is dug up to find the source of the electricity and there
-		are no wires. When the street lamp is put back, it doesn't turn back on.
-	</li>
-	<li>
-		All but the most basic of staple foods stop appearing in the pantries. Residents panic as serious discussions around
-		food production and starvation begin.
-	</li>
-	<li><b>The Council</b> is fully staffed by the end of February.</li>
+ <li>
+  Residents begin to explore Home in earnest. A street lamp is dug up to find
+  the source of the electricity and there are no wires. When the street lamp is
+  put back, it doesn't turn back on.
+ </li>
+ <li>
+  All but the most basic of staple foods stop appearing in the pantries.
+  Residents panic as serious discussions around food production and starvation
+  begin.
+ </li>
+ <li><b>The Council</b> is fully staffed by the end of February.</li>
 </ul>
 
 <h3 style="text-align: left">Arrivals</h3>
@@ -32,18 +37,22 @@
 
 <h2>March</h2>
 <ul>
-	<li>
-		The Council solidifies the economic system and the rationing process in Home. Friction and unrest grows between Town
-		and the growing faction under the direction of Saint Leyla, calling themselves <b>the Commune</b>.
-	</li>
-	<li>The Hanging Gardens open the last week of March.</li>
+ <li>
+  The Council solidifies the economic system and the rationing process in Home.
+  Friction and unrest grows between Town and the growing faction under the
+  direction of Saint Leyla, calling themselves <b>the Commune</b>.
+ </li>
+ <li>The Hanging Gardens open the last week of March.</li>
 </ul>
 
 <h3 style="text-align: left">Arrivals</h3>
 <ul id="march-2023-table"></ul>
 
 <h2>April</h2>
-<p>The Commune has fully taken over The Farm within the first week of April, in time for the first spring planting.</p>
+<p>
+ The Commune has fully taken over The Farm within the first week of April, in
+ time for the first spring planting.
+</p>
 
 <h3 style="text-align: left">Arrivals</h3>
 <ul id="april-2023-table"></ul>
@@ -63,7 +72,10 @@
 <h2>July</h2>
 <p>OOC: The RP begins</p>
 <ul>
-	<li>Town holds a <a href="?showtopic=18">Wolf Stew Feast</a> the first week of July. Commune are not invited.</li>
+ <li>
+  Town holds a <a href="?showtopic=18">Wolf Stew Feast</a> the first week of
+  July. Commune are not invited.
+ </li>
 </ul>
 
 <h3 style="text-align: left">Arrivals</h3>
@@ -71,65 +83,86 @@
 
 <h2>August</h2>
 <ul>
-	<li>
-		The Hanging Gardens hosts a <a href="?showforum=25">Masquerade Ball</a> to celebrate the arrival of Councilor Davis'
-		twin sister, attended by Town and Commune.
-	</li>
-	<li>
-		The party-goers at the end of the night are <a href="?showforum=27">attacked by talking monster wolves</a>, marking
-		the first time the horror has managed to escape The Blank.
-	</li>
-	<li>The Morgue appears in Home.</li>
-	<li>A new area, the Memorial Cemetery Park, is created to bury the dead.</li>
+ <li>
+  The Hanging Gardens hosts a <a href="?showforum=25">Masquerade Ball</a> to
+  celebrate the arrival of Councilor Davis' twin sister, attended by Town and
+  Commune.
+ </li>
+ <li>
+  The party-goers at the end of the night are
+  <a href="?showforum=27">attacked by talking monster wolves</a>, marking the
+  first time the horror has managed to escape The Blank.
+ </li>
+ <li>The Morgue appears in Home.</li>
+ <li>A new area, the Memorial Cemetery Park, is created to bury the dead.</li>
 </ul>
 
 <h3 style="text-align: left">Arrivals</h3>
 <ul id="august-2023-table"></ul>
 
 <h2>September</h2>
-<p>Nothing to note (yet).</p>
+<ul>
+ <li>
+  A new restaurant space in No Man's Land, <a href="">Le Restaurant</a>, opens
+  to the public.
+ </li>
+ <li>September 19th: Zelcova Mouret disappears</li>
+ <li>September 30th: Milo Morrow disappears</li>
+</ul>
 
 <h3 style="text-align: left">Arrivals</h3>
 <ul id="september-2023-table"></ul>
 
+<h2>October</h2>
+<ul>
+ <li>October 21st: Yuna Adalheidis disappears</li>
+</ul>
+
+<h3 style="text-align: left">Arrivals</h3>
+<ul id="october-2023-table"></ul>
+
 <script>
-	/* auto created Arrivals List, coded by Luna */
-	$(document).ready(async function () {
-		const residentsGroup = `:is(.g_7)`;
+ /* auto created Arrivals List, coded by Luna */
+ $(document).ready(async function () {
+  const residentsGroup = `:is(.g_7)`;
 
-		let data = await $.get('/index.php?act=Members&max_results=1000');
+  let data = await $.get('/index.php?act=Members&max_results=1000');
 
-		var doc = new DOMParser().parseFromString(data, 'text/html');
+  var doc = new DOMParser().parseFromString(data, 'text/html');
 
-		let entries = [];
+  let entries = [];
 
-		$(`.arrivals-table-item${residentsGroup}`, doc).each(function () {
-			let joinDate = $(this).find('.arrived').text();
-			let name = $(this).find('.name').text();
+  $(`.arrivals-table-item${residentsGroup}`, doc).each(function () {
+   let joinDate = $(this).find('.arrived').text();
+   let name = $(this).find('.name').text();
 
-			let date = parseDate(joinDate);
-			let month = date.toLocaleString('default', { month: 'long' }).toLocaleLowerCase();
-			let year = date.getFullYear();
+   let date = parseDate(joinDate);
+   let month = date
+    .toLocaleString('default', { month: 'long' })
+    .toLocaleLowerCase();
+   let year = date.getFullYear();
 
-			let day = date.getDate();
-			let suffix = ['th', 'st', 'nd', 'rd'][day % 30 > 10 && day % 30 < 14 ? 0 : day % 10 < 4 ? day % 10 : 0];
-			let formattedString = `<li>${day}${suffix} - ${name}</li>`;
+   let day = date.getDate();
+   let suffix = ['th', 'st', 'nd', 'rd'][
+    day % 30 > 10 && day % 30 < 14 ? 0 : day % 10 < 4 ? day % 10 : 0
+   ];
+   let formattedString = `<li>${day}${suffix} - ${name}</li>`;
 
-			entries.push({ day, month, year, formattedString });
-		});
+   entries.push({ day, month, year, formattedString });
+  });
 
-		// Sort entries by day
-		entries.sort((a, b) => a.day - b.day);
+  // Sort entries by day
+  entries.sort((a, b) => a.day - b.day);
 
-		// Append sorted entries to the corresponding month ID
-		entries.forEach((entry) => {
-			$(`#${entry.month}-${entry.year}-table`).append(entry.formattedString);
-		});
-	});
+  // Append sorted entries to the corresponding month ID
+  entries.forEach((entry) => {
+   $(`#${entry.month}-${entry.year}-table`).append(entry.formattedString);
+  });
+ });
 
-	function parseDate(dateString) {
-		let cleanedDateString = dateString.replace(/(\d+)(st|nd|rd|th)/, '$1');
-		let date = new Date(cleanedDateString);
-		return date;
-	}
+ function parseDate(dateString) {
+  let cleanedDateString = dateString.replace(/(\d+)(st|nd|rd|th)/, '$1');
+  let date = new Date(cleanedDateString);
+  return date;
+ }
 </script>
