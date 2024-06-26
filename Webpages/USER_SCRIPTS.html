@@ -94,8 +94,8 @@
    });
 
    document.querySelector('form[name="sForm"]').innerHTML = `
-			<form action="/index.php?act=Search&CODE=01"method=post name=sForm onsubmit='document.getElementById("perf_search").disabled="true"'><div id=search-grid><div class=keyword-search-heading><div class=maintitle>Search Keywords</div></div><div class=keyword-search><div class=pformstrip>search by keywords</div><input class=forminput id=keywords name=keywords maxlength=100><div><label for=keywords>Enter a keyword or phrase to search by.</label>[<a href=# onclick=win_pop() title="Find out how to improve your search with boolean operators">Advanced Usage Help</a>]</div></div><div class=member-search><div class=pformstrip>filter by member name (optional)</div><input class=forminput name=namesearch maxlength=100><div><input class=checkbox id=matchtopics name=matchtopics type=checkbox value=1> <label for=matchtopics>Search topics started by this member only</label></div></div><div class=search-options-heading><div class=maintitle>Search Options</div></div><div class=search-where><div class=pformstrip>search where</div>${newSelect.outerHTML}<div><input id=searchsubs name=searchsubs type=checkbox value=1 checked> <label for=searchsubs>Search in child forums if sub category is chosen?</label></div></div><div class=refine-search><div class=pformstrip>refine search</div><div class=fieldset-search-box><fieldset class=search><legend><strong>Search posts from...</strong></legend><select class=forminput name=prune><option value=1>Today<option value=7>7 days ago and...<option value=30>30 days ago and...<option value=60>60 days ago and...<option value=90>90 days ago and...<option value=180>180 days ago and...<option value=365>365 days ago and...<option value=0 selected>Any date</select><div><label><input class=radiobutton id=prune_older name=prune_type type=radio value=older> Older</label></div><div><label><input class=radiobutton id=prune_newer name=prune_type type=radio value=newer checked> Newer</label></div></fieldset></div><div class=fieldset-search-box><fieldset class=search><legend><strong>Sort results by...</strong></legend><select class=forminput name=sort_key><option value=last_post>Last Posting Date<option value=posts>Number of Replies<option value=starter_name>Poster Name<option value=forum_id>Forum Name</select><div><label><input class=radiobutton id=sort_desc name=sort_order type=radio value=desc checked> descending order</label></div><div><label><input class=radiobutton id=sort_asc name=sort_order type=radio value=asc> ascending order</label></div></fieldset></div><div class=fieldset-search-box><fieldset class=search><legend><strong>Search Where</strong></legend><div><label><input class=radiobutton id=search_in_posts name=search_in type=radio value=posts checked> Search entire post</label></div><div><label><input class=radiobutton id=search_in_titles name=search_in type=radio value=titles> Search titles only</label></div></fieldset></div><div class=fieldset-search-box><fieldset class=search><legend><strong>Result Type</strong></legend><div><label><input class=radiobutton id=result_topics name=result_type type=radio value=topics checked> Show results as topics</label></div><div><label><input class=radiobutton id=result_posts name=result_type type=radio value=posts> Show results as posts</label></div></fieldset></div></div><div class=submit-search-form><input class=forminput id=perf_search type=submit value="Perform the search"onclick='document.getElementById("perf_search").value="Performing search... please wait"'></div></div></form>
-			`;
+               <form action="/index.php?act=Search&CODE=01"method=post name=sForm onsubmit='document.getElementById("perf_search").disabled="true"'><div id=search-grid><div class=keyword-search-heading><div class=maintitle>Search Keywords</div></div><div class=keyword-search><div class=pformstrip>search by keywords</div><input class=forminput id=keywords name=keywords maxlength=100><div><label for=keywords>Enter a keyword or phrase to search by.</label>[<a href=# onclick=win_pop() title="Find out how to improve your search with boolean operators">Advanced Usage Help</a>]</div></div><div class=member-search><div class=pformstrip>filter by member name (optional)</div><input class=forminput name=namesearch maxlength=100><div><input class=checkbox id=matchtopics name=matchtopics type=checkbox value=1> <label for=matchtopics>Search topics started by this member only</label></div></div><div class=search-options-heading><div class=maintitle>Search Options</div></div><div class=search-where><div class=pformstrip>search where</div>${newSelect.outerHTML}<div><input id=searchsubs name=searchsubs type=checkbox value=1 checked> <label for=searchsubs>Search in child forums if sub category is chosen?</label></div></div><div class=refine-search><div class=pformstrip>refine search</div><div class=fieldset-search-box><fieldset class=search><legend><strong>Search posts from...</strong></legend><select class=forminput name=prune><option value=1>Today<option value=7>7 days ago and...<option value=30>30 days ago and...<option value=60>60 days ago and...<option value=90>90 days ago and...<option value=180>180 days ago and...<option value=365>365 days ago and...<option value=0 selected>Any date</select><div><label><input class=radiobutton id=prune_older name=prune_type type=radio value=older> Older</label></div><div><label><input class=radiobutton id=prune_newer name=prune_type type=radio value=newer checked> Newer</label></div></fieldset></div><div class=fieldset-search-box><fieldset class=search><legend><strong>Sort results by...</strong></legend><select class=forminput name=sort_key><option value=last_post>Last Posting Date<option value=posts>Number of Replies<option value=starter_name>Poster Name<option value=forum_id>Forum Name</select><div><label><input class=radiobutton id=sort_desc name=sort_order type=radio value=desc checked> descending order</label></div><div><label><input class=radiobutton id=sort_asc name=sort_order type=radio value=asc> ascending order</label></div></fieldset></div><div class=fieldset-search-box><fieldset class=search><legend><strong>Search Where</strong></legend><div><label><input class=radiobutton id=search_in_posts name=search_in type=radio value=posts checked> Search entire post</label></div><div><label><input class=radiobutton id=search_in_titles name=search_in type=radio value=titles> Search titles only</label></div></fieldset></div><div class=fieldset-search-box><fieldset class=search><legend><strong>Result Type</strong></legend><div><label><input class=radiobutton id=result_topics name=result_type type=radio value=topics checked> Show results as topics</label></div><div><label><input class=radiobutton id=result_posts name=result_type type=radio value=posts> Show results as posts</label></div></fieldset></div></div><div class=submit-search-form><input class=forminput id=perf_search type=submit value="Perform the search"onclick='document.getElementById("perf_search").value="Performing search... please wait"'></div></div></form>
+               `;
   };
  }
 </script>
@@ -105,12 +105,12 @@
 
  if ($('body#UserCP').length > 0 && $('body').hasClass('p_0')) {
   document.querySelector('#ucpmenu').innerHTML = `
-		<div class=maintitle>Player Menu</div><div class=outer-grid><div class=outer-grid-item><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=54">Manage Characters</a> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-2><b class=ucp-heading>Tracking</b> <a href="?act=UserCP&CODE=alerts">Alerts</a> <a href="?act=UserCP&CODE=50">Forums</a> <a href="?act=UserCP&CODE=26">Topics</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
-		`;
+           <div class=maintitle>Player Menu</div><div class=outer-grid><div class=outer-grid-item><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=54">Manage Characters</a> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-2><b class=ucp-heading>Tracking</b> <a href="?act=UserCP&CODE=alerts">Alerts</a> <a href="?act=UserCP&CODE=50">Forums</a> <a href="?act=UserCP&CODE=26">Topics</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
+           `;
  } else if ($('body#UserCP').length > 0) {
   document.querySelector('#ucpmenu').innerHTML = `
-		<div class=maintitle>Character Menu</div><div class=outer-grid-2><div class=outer-grid-item-1><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
-		`;
+           <div class=maintitle>Character Menu</div><div class=outer-grid-2><div class=outer-grid-item-1><b class=ucp-heading>Setup</b> <a href="?act=UserCP&CODE=24">Set Avatar</a> <a href="?act=UserCP&CODE=01">Fill Out Profile</a></div><div class=outer-grid-item-3><b class=ucp-heading>Settings</b><div class=inner-grid><div class=inner-grid-item><a href="?act=UserCP&CODE=04">Board Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=alerts_settings">Alert Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=02">Email Settings</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=52">Change Username</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=28">Change Password</a></div><div class=inner-grid-item><a href="?act=UserCP&CODE=08">Change Email</a></div></div></div><div class=outer-grid-item-4><b class=ucp-heading>Messenger</b> <a href="?act=Msg&CODE=01">Inbox & Settings</a></div></div>
+           `;
  }
 </script>
 <script>
@@ -119,8 +119,8 @@
 
  if ($('body#Msg').length > 0) {
   document.querySelector('#ucpmenu').innerHTML = `
-		<div class="maintitle">Menu</div><div class="outer-grid"><div class="outer-grid-item"><b class="ucp-heading">Inbox</b><a href="?act=Msg&CODE=04">Compose New Message</a><a href="?act=Msg&CODE=01">Go to Inbox</a><a href="?act=Msg&CODE=01&VID=sent"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i>Sent Items</a><a href="?act=Msg&CODE=20">Saved (Unsent) PMs</a><a href="?act=Msg&CODE=30">Message Tracker</a></div><div class="outer-grid-item"><b class="ucp-heading">Settings</b><a href="javascript:window.open('index.php?showuser=<!-- |id| -->&CODE=friends','Friends','width=620,height=460,resizable=yes,scrollbars=yes');void(0);">My Friends/Contacts</a><a href="?act=Msg&CODE=delete">Empty PM Folders</a><a href="?act=Msg&CODE=07">Edit Storage Folders</a><a href="?act=Msg&CODE=14">Archive Messages</a></div><div class="outer-grid-item"><b class="ucp-heading">User CP</b><a href="?act=UserCP&CODE=00">Home & Settings</a></div></div>
-		`;
+           <div class="maintitle">Menu</div><div class="outer-grid"><div class="outer-grid-item"><b class="ucp-heading">Inbox</b><a href="?act=Msg&CODE=04">Compose New Message</a><a href="?act=Msg&CODE=01">Go to Inbox</a><a href="?act=Msg&CODE=01&VID=sent"><i class="fa-solid fa-arrow-turn-up fa-rotate-90"></i>Sent Items</a><a href="?act=Msg&CODE=20">Saved (Unsent) PMs</a><a href="?act=Msg&CODE=30">Message Tracker</a></div><div class="outer-grid-item"><b class="ucp-heading">Settings</b><a href="javascript:window.open('index.php?showuser=<!-- |id| -->&CODE=friends','Friends','width=620,height=460,resizable=yes,scrollbars=yes');void(0);">My Friends/Contacts</a><a href="?act=Msg&CODE=delete">Empty PM Folders</a><a href="?act=Msg&CODE=07">Edit Storage Folders</a><a href="?act=Msg&CODE=14">Archive Messages</a></div><div class="outer-grid-item"><b class="ucp-heading">User CP</b><a href="?act=UserCP&CODE=00">Home & Settings</a></div></div>
+           `;
  }
 </script>
 <script>
@@ -228,11 +228,11 @@
   $(document).ready(function () {
    const firstPformstrip = $('form[name="theForm"] .pformstrip:first');
    firstPformstrip.html(`
-			<div class="maintitle">Player Profile Fields</div>
-    		`);
+               <div class="maintitle">Player Profile Fields</div>
+               `);
    firstPformstrip.after(`
-			<div class="pformstrip">Please fill in your player information.<br/><i>Note: This information will auto-fill on any characters you create through the \'Manage Characters\' link.</i></div>
-			`);
+               <div class="pformstrip">Please fill in your player information.<br/><i>Note: This information will auto-fill on any characters you create through the \'Manage Characters\' link.</i></div>
+               `);
 
    const specificText = 'Your personal profile, this section is optional';
    $(
@@ -241,29 +241,29 @@
 
    const field5 = $('form[name="theForm"] tr#field_5');
    field5.after(`
-			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Graphics Fields</div></td></tr>
-			<tr><td class="pformstrip" colspan="2">Graphics for your main profile.</td></tr>
-			`);
+               <tr><td class="pformstrip" colspan="2"><div class="maintitle">Graphics Fields</div></td></tr>
+               <tr><td class="pformstrip" colspan="2">Graphics for your main profile.</td></tr>
+               `);
    const field6 = $('form[name="theForm"] tr#field_6');
    field6.after(`
-			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Character Profile Fields</div></td></tr>
-			<tr><td class="pformstrip" colspan="2">Please fill in your character profile information.</td>
-				<tr><td class="pformstrip" colspan="2"><i>The information you enter for your character under the application is up to you--you can tell us as much or as little about your character as you'd like. You can even lie.
-				<br>Think about your character profile as public knowledge about your character. If your character has secrets, you are allowed to protect them. But secrets can be hard to keep.</i>
-				<tr><td class="pformstrip" colspan="2">For detailed instructions, please see our <a href="?act=Pages&pid=3#tabs-11">GUIDEBOOK</a>.</td></tr>
-			`);
+               <tr><td class="pformstrip" colspan="2"><div class="maintitle">Character Profile Fields</div></td></tr>
+               <tr><td class="pformstrip" colspan="2">Please fill in your character profile information.</td>
+                   <tr><td class="pformstrip" colspan="2"><i>The information you enter for your character under the application is up to you--you can tell us as much or as little about your character as you'd like. You can even lie.
+                   <br>Think about your character profile as public knowledge about your character. If your character has secrets, you are allowed to protect them. But secrets can be hard to keep.</i>
+                   <tr><td class="pformstrip" colspan="2">For detailed instructions, please see our <a href="?act=Pages&pid=3#tabs-11">GUIDEBOOK</a>.</td></tr>
+               `);
 
    const field21 = $('form[name="theForm"] tr#field_21');
    field21.before(`
-			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Plot Hook Fields</div></td></tr>
-			<tr><td class="pformstrip" colspan="2">You can have up to THREE plot hooks listed for your character.</td></tr>
-			`);
+               <tr><td class="pformstrip" colspan="2"><div class="maintitle">Plot Hook Fields</div></td></tr>
+               <tr><td class="pformstrip" colspan="2">You can have up to THREE plot hooks listed for your character.</td></tr>
+               `);
 
    const field19 = $('form[name="theForm"] tr#field_19');
    field19.before(`
-			<tr><td class="pformstrip" colspan="2"><div class="maintitle">Secret Staff Fields</div></td></tr>
-			<tr><td class="pformstrip" colspan="2">The information in this section is visible ONLY to you and Staff.</td></tr>
-			`);
+               <tr><td class="pformstrip" colspan="2"><div class="maintitle">Secret Staff Fields</div></td></tr>
+               <tr><td class="pformstrip" colspan="2">The information in this section is visible ONLY to you and Staff.</td></tr>
+               `);
 
    setTimeout(function () {
     const tables = $('form table');
@@ -323,8 +323,8 @@
 </script>
 <script>
  /* JCINK CODE AREA MODIFICATION v2 BY JAWN
-	https://backtoneverland.jcink.net/
-	updated by Luna */
+       https://backtoneverland.jcink.net/
+       updated by Luna */
 
  if ($('td#CODE').length > 0) {
   $(function () {
@@ -518,7 +518,7 @@
    .addTo(houses);
   const mHarry = L.marker([1956.8125, 3364], houseOptions)
    .bindPopup(
-    `<b>House # 278</b><p>Residents:</p><ul><li>Harry Harris</li></ul>`,
+    `<b>House # 278</b><p>Residents:</p><ul><li>Harry Harris (NPC)</li></ul>`,
    )
    .addTo(houses);
   const mKimDahlia = L.marker([2448.8125, 3776], houseOptions)
@@ -528,7 +528,7 @@
    .addTo(houses);
   const mDzifaYuna = L.marker([2886.8125, 2760], houseOptions)
    .bindPopup(
-    `<b>House # 22</b><p>Residents:</p><ul><li>Dzifa Appiah</li><li>Yuna Adalheidis</li></ul>`,
+    `<b>House # 22</b><p>Residents:</p><ul><li>Dzifa Appiah</li><li>Yuna Adalheidis (Missing)</li></ul>`,
    )
    .addTo(houses);
   const mDimitri = L.marker([2574.8125, 3768], houseOptions)
@@ -581,6 +581,21 @@
     `<b>House # 462</b><p>Residents:</p><ul><li>Drake Fitzgerald</li><li>Zahra Ali (NPC)</li></ul>`,
    )
    .addTo(houses);
+  const mAbe = L.marker([2108.550003, 3824.673607], houseOptions)
+   .bindPopup(
+    `<b>House # 321</b><p>Residents:</p><ul><li>Abernathy Arrazo</li></ul>`,
+   )
+   .addTo(houses);
+  const mUriel = L.marker([2184.162506, 2714.805785], houseOptions)
+   .bindPopup(
+    `<b>House # 8</b><p>Residents:</p><ul><li>Father Uriel</li><li>1 NPC</li></ul>`,
+   )
+   .addTo(houses);
+  const mSimone = L.marker([2224.162506, 2714.934294], houseOptions)
+   .bindPopup(
+    `<b>House # 7</b><p>Residents:</p><ul><li>Simone Bernard</li><li>1 NPC</li></ul>`,
+   )
+   .addTo(houses);
 
   // businesses
   const jobs = L.layerGroup();
@@ -590,7 +605,7 @@
 
   const mDistillery = L.marker([2106, 3317], jobOptions)
    .bindPopup(
-    `<b>The Distillery & Bar</b><p>Run by Julian Clay</p>Workers:<ul><li>Harry Harris</li><li>Cheryl Davis</li></ul>`,
+    `<b>The Distillery & Bar</b><p>Run by Julian Clay</p>Workers:<ul><li>Harry Harris (NPC)</li><li>Cheryl Davis</li></ul>`,
    )
    .addTo(jobs);
   const mToolsShop = L.marker([2078, 3468], jobOptions)
@@ -600,12 +615,20 @@
    .addTo(jobs);
   const mRestaurant = L.marker([2110.8125, 2911.574764], jobOptions)
    .bindPopup(
-    `<b>Le Restaurant</b><p>Run by Gabriel de la Cour</p>Workers:<ul><li>Mint Freeman</li></ul>`,
+    `<b>Le Restaurant</b><p>Run by Gabriel de la Cour</p>
+        Workers:<ul><li>Mint Freeman</li><li>Drake Fitzgerald</li></ul>`,
    )
    .addTo(jobs);
   const mClinic = L.marker([2216.795471, 3465.397843], jobOptions)
    .bindPopup(
-    `<b>The Clinic</b><p>Run by Town</p>Workers:<ul><li>Magdalena Silva</li><li>Sylvia Faraji</li><li>Drake Fitzgerald</li><li>Michael Carr (NPC)</li><li>Rowena Higgins (NPC)</li></ul>`,
+    `<b>The Clinic</b><p>Run by Town</p>
+        Workers:<ul>
+          <li>Magdalena Silva</li>
+          <li>Sylvia Faraji</li>
+          <li>Drake Fitzgerald</li>
+          <li>Abernathy Arrazo</li>
+          <li>Michael Carr (NPC)</li>
+          <li>Rowena Higgins (NPC)</li></ul>`,
    )
    .addTo(jobs);
   const mMorgue = L.marker([2190.795471, 3449.499968], jobOptions)
@@ -740,32 +763,51 @@
 <script>
  /* Navigate tabs of the Guidebook */
 
- if ($('body#Pages.act-Pages').length > 0) {
-  const guidebookContents = document.querySelectorAll('.guidebook-content');
-  const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
+ document.addEventListener('DOMContentLoaded', function () {
+  if ($('body#Pages.act-Pages').length > 0) {
+   const guidebookSections = document.querySelectorAll('.guidebook-content');
+   const guidebookLinks = document.querySelectorAll('#guidebook-menu ul li a');
 
-  guidebookLinks.forEach((guidebookLink) => {
-   guidebookLink.addEventListener('click', function (e) {
-    e.preventDefault();
-    const tabSelected = this.getAttribute('href').replace('#', '');
+   // navigate tab inside guidebook
+   guidebookLinks.forEach((link) => {
+    link.addEventListener('click', function (e) {
+     e.preventDefault();
+     const tabId = this.getAttribute('href').replace('#', '');
+     history.pushState(null, '', '#' + tabId);
+     activateTab(tabId);
+    });
+   });
 
-    guidebookContents.forEach((guidebookContent) => {
-     guidebookContent.classList.remove('active');
+   // navigate tab on page load
+   if (window.location.hash) {
+    const tabId = window.location.hash.replace('#', '');
+    activateTab(tabId);
+   }
+
+   // helper function to change tabs
+   function activateTab(tabId) {
+    guidebookSections.forEach((section) => {
+     section.classList.remove('active');
+
+     if (section.id === tabId) {
+      section.classList.add('active');
+     }
     });
 
-    guidebookLinks.forEach((guidebookLink) => {
-     guidebookLink.classList.remove('active');
+    guidebookLinks.forEach((link) => {
+     link.classList.remove('active');
+
+     if (link.getAttribute('href').replace('#', '') === tabId) {
+      link.classList.add('active');
+     }
     });
 
-    this.classList.add('active');
-    document.getElementById(tabSelected).classList.add('active');
-
-    if (tabSelected === 'townmap') {
+    if (tabId === 'townmap') {
      setTimeout(function () {
       map.invalidateSize();
      }, 1);
     }
-   });
-  });
- }
+   }
+  }
+ });
 </script>
