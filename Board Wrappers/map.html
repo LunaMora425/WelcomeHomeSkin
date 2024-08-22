@@ -1,0 +1,244 @@
+<h1>The Map</h1>
+<p>
+  Below is an interactive Town Map. To see a full, to scale view of the Town Map
+  OR to have your residence or job added, please see
+  <a href="?showtopic=275">THIS THREAD</a>.
+</p>
+<div id="map"></div>
+
+<script src="https://files.jcink.net/uploads2/welcomehomeroleplay/Maps/mapConfig.js"></script>
+<script>
+  /*======================================================
+   * Resident Houses
+   *======================================================= */
+  const mLeyla = L.marker([2074, 2712], houseOptions)
+    .bindPopup(
+      `<b>House # 12</b><p>Residents:</p><ul><li>Saint Leyla</li></ul>`,
+    )
+    .addTo(houses);
+  const mDavisTwins = L.marker([1722, 3059], houseOptions)
+    .bindPopup(
+      `<b>House # 696</b><p>Residents:</p><ul><li>Cheyenne Davis</li><li>Cheryl Davis</li></ul>`,
+    )
+    .addTo(houses);
+  const mBunkBoys = L.marker([2026, 2713], houseOptions)
+    .bindPopup(
+      `<b>House # 13</b><p>Residents:</p><ul><li>Bryn Kane</li><li>Feiyu Li</li><li>Milo Morrow (Missing)</li></ul>`,
+    )
+    .addTo(houses);
+  const mFainaVale = L.marker([2768, 3669], houseOptions)
+    .bindPopup(
+      `<b>House # 194</b><p>Residents:</p><ul><li>Valerian Ellis</li><li>Faina Parker</li></ul>`,
+    )
+    .addTo(houses);
+  const mDave = L.marker([1642, 3517], houseOptions)
+    .bindPopup(
+      `<b>House # 1991</b><p>Residents:</p><ul><li>Dave Matthews</li></ul>`,
+    )
+    .addTo(houses);
+  const mBaileyAndrew = L.marker([2888, 4123], houseOptions)
+    .bindPopup(
+      `<b>House # 613</b><p>Residents:</p><ul><li>Bailey Harkwood</li><li>Andrew Ellis</li></ul>`,
+    )
+    .addTo(houses);
+  const mGabe = L.marker([2108.795471, 3015.571887], houseOptions)
+    .bindPopup(
+      `<b>House # 666</b><p>Residents:</p><ul><li>Gabriel de la Cour</li></ul>`,
+    )
+    .addTo(houses);
+  const mDoe = L.marker([1408, 3623], houseOptions)
+    .bindPopup(`<b>House # 888</b><p>Residents:</p><ul><li>John Doe</li></ul>`)
+    .addTo(houses);
+  const mSylviaMinoru = L.marker([1404.8125, 4078], houseOptions)
+    .bindPopup(
+      `<b>House # 123</b><p>Residents:</p><ul><li>Sylvia Faraji</li><li>Minoru Kubo</li></ul>`,
+    )
+    .addTo(houses);
+  const mHarry = L.marker([1956.8125, 3364], houseOptions)
+    .bindPopup(
+      `<b>House # 278</b><p>Residents:</p><ul><li>Harry Harris (NPC)</li></ul>`,
+    )
+    .addTo(houses);
+  const mKimDahlia = L.marker([2448.8125, 3776], houseOptions)
+    .bindPopup(
+      `<b>House # 8675</b><p>Residents:</p><ul><li>Kim Chaoreum</li><li>Dahlia Cappernici</li></ul><p>There is also a frog pond in the front yard</p>`,
+    )
+    .addTo(houses);
+  const mDzifaYuna = L.marker([2886.8125, 2760], houseOptions)
+    .bindPopup(
+      `<b>House # 22</b><p>Residents:</p><ul><li>Dzifa Appiah</li><li>Yuna Adalheidis (Missing)</li></ul>`,
+    )
+    .addTo(houses);
+  const mDimitri = L.marker([2574.8125, 3768], houseOptions)
+    .bindPopup(
+      `<b>House # 69</b><p>Residents:</p><ul><li>Dimitri van Leeuwen</li></ul>`,
+    )
+    .addTo(houses);
+  const mMagda = L.marker([2574.795471, 3517.487023], houseOptions)
+    .bindPopup(
+      `<b>House # 99</b><p>Residents:</p><ul><li>Magdalena Silva</li></ul>`,
+    )
+    .addTo(houses);
+  const mLady = L.marker([1488.28125, 2759.860015], houseOptions)
+    .bindPopup(
+      `<b>House # 339</b><p>Residents:</p><ul><li>Lady Grave</li><li>2 NPCs</li></ul>`,
+    )
+    .addTo(houses);
+  const mHarlan = L.marker([2608.28126, 4130.215934], houseOptions)
+    .bindPopup(
+      `<b>House # 62</b><p>Residents:</p><ul><li>Harlan Guillaume</li></ul>`,
+    )
+    .addTo(houses);
+  const mAlex = L.marker([2460.8125, 3671], houseOptions)
+    .bindPopup(
+      `<b>House # 87</b><p>Residents:</p><ul><li>Alexandra Moller</li><li>Rebecca Aguilar (Missing)</li></ul>`,
+    )
+    .addTo(houses);
+  const mJulian = L.marker([2106.795471, 3165.976071], houseOptions)
+    .bindPopup(
+      `<b>House # 232</b><p>Residents:</p><ul><li>Julian Clay</li></ul>`,
+    )
+    .addTo(houses);
+  const mRoman = L.marker([2572.795471, 4125.246814], houseOptions)
+    .bindPopup(
+      `<b>House # 64</b><p>Residents:</p><ul><li>Roman Sadovsky</li></ul>`,
+    )
+    .addTo(houses);
+  const mYuta = L.marker([2614.795471, 3165.557503], houseOptions)
+    .bindPopup(
+      `<b>House # 127</b><p>Residents:</p><ul><li>Yuta Tsukiyama</li></ul>`,
+    )
+    .addTo(houses);
+  const mErzaMatti = L.marker([1945.233337, 3929], houseOptions)
+    .bindPopup(
+      `<b>House # 772</b><p>Residents:</p><ul><li>Erza Dharz</li><li>Mateus Nowak</li></ul>`,
+    )
+    .addTo(houses);
+  const mDrake = L.marker([2611.233337, 3671], houseOptions)
+    .bindPopup(
+      `<b>House # 462</b><p>Residents:</p><ul><li>Drake Fitzgerald</li><li>Zahra Ali (NPC)</li></ul>`,
+    )
+    .addTo(houses);
+  const mAbe = L.marker([2108.550003, 3824.673607], houseOptions)
+    .bindPopup(
+      `<b>House # 321</b><p>Residents:</p><ul><li>Abernathy Arrazo</li></ul>`,
+    )
+    .addTo(houses);
+  const mUriel = L.marker([2184.162506, 2714.805785], houseOptions)
+    .bindPopup(
+      `<b>House # 8</b><p>Residents:</p><ul><li>Father Uriel</li><li>1 NPC</li></ul>`,
+    )
+    .addTo(houses);
+  const mSimone = L.marker([2224.162506, 2714.934294], houseOptions)
+    .bindPopup(
+      `<b>House # 7</b><p>Residents:</p><ul><li>Simone Bernard</li><li>1 NPC</li></ul>`,
+    )
+    .addTo(houses);
+  const mNaoiseCayden = L.marker([1411.711121, 3918.573163], houseOptions)
+    .bindPopup(
+      `<b>House # 6969</b><p>Residents:</p><ul><li>Naoise Chwe</li><li>Cayden Russell</li></ul>`,
+    )
+    .addTo(houses);
+  const mLola = L.marker([2494.850037, 3925.376354], houseOptions)
+    .bindPopup(
+      `<b>House # 4849</b><p>Residents:</p><ul><li>Lola Navarro</li><li>Mystery Roommate</li></ul>`,
+    )
+    .addTo(houses);
+
+  /*======================================================
+   * Businesses/Jobs
+   *======================================================= */
+  const mDistillery = L.marker([2106, 3317], jobOptions)
+    .bindPopup(
+      `<b>The Distillery & Bar</b><p>Run by Julian Clay</p>Workers:<ul><li>Harry Harris (NPC)</li><li>Cheryl Davis</li></ul>`,
+    )
+    .addTo(jobs);
+  const mToolsShop = L.marker([2078, 3468], jobOptions)
+    .bindPopup(
+      `<b>Tools Shop</b><p>Run by Town</p>Workers:<ul><li>Roman Sadovsky</li></ul>`,
+    )
+    .addTo(jobs);
+  const mRestaurant = L.marker([2110.8125, 2911.574764], jobOptions)
+    .bindPopup(
+      `<b>Le Restaurant</b><p>Run by Gabriel de la Cour</p>
+        Workers:<ul><li>Mint Freeman</li><li>Drake Fitzgerald</li></ul>`,
+    )
+    .addTo(jobs);
+  const mClinic = L.marker([2216.795471, 3465.397843], jobOptions)
+    .bindPopup(
+      `<b>The Clinic</b><p>Run by Town</p>
+        Workers:<ul>
+          <li>Magdalena Silva</li>
+          <li>Sylvia Faraji</li>
+          <li>Drake Fitzgerald</li>
+          <li>Abernathy Arrazo</li>
+          <li>Michael Carr (NPC)</li>
+          <li>Rowena Higgins (NPC)</li></ul>`,
+    )
+    .addTo(jobs);
+  const mMorgue = L.marker([2190.795471, 3449.499968], jobOptions)
+    .bindPopup(
+      `<b>The Morgue</b><p>Run by Town</p>Workers:<ul><li>Valerian Ellis</li></ul>`,
+    )
+    .addTo(jobs);
+  const mSheriff = L.marker([2296.8125, 3451], jobOptions)
+    .bindPopup(
+      `<b>Sheriff's Offices</b><p>Run by The Council</p>Workers:<ul><li>Alexandra Moller</li><li>Kim Chaoreum</li></ul>`,
+    )
+    .addTo(jobs);
+  const mRations = L.marker([2296.25, 3215.646683], jobOptions)
+    .bindPopup(`<b>Rations Distribution Center</b><p>Run by The Council</p>`)
+    .addTo(jobs);
+
+  /*======================================================
+   * Landmarks
+   *======================================================= */
+  const mTownHall = L.marker([2272, 3493], townHallOptions)
+    .bindPopup(`<b>Town Hall</b><p>Run by the Council</p>`)
+    .addTo(landmarks);
+
+  const mTownSquare = L.marker([2120.795471, 3415.56038], townSquareOptions)
+    .bindPopup(
+      `<b>Town Square</b><p>Contains the Community Board & green space</p>`,
+    )
+    .addTo(landmarks);
+  const mCemetery = L.marker([1158, 4015], cemeteryOptions)
+    .bindPopup(
+      `<b>Memorial Cemetery Park</b><p>Graveyard and park space to bury Home's dead</p><i>Currently buried: 33</i>`,
+    )
+    .addTo(landmarks);
+  const mSwing = L.marker([1779.333374, 3853.759011], swingOptions)
+    .bindPopup(
+      `<b>Swing</b><p>The swing is hung on the branch of a tree which is on the corner of the street</p>`,
+    )
+    .addTo(landmarks);
+
+  /*======================================================
+   * !! DO NOT ADD TO OR EDIT ANYTHING BELOW THIS LINE !!
+   *======================================================= */
+  //create Map
+  var map = L.map('map', {
+    crs: L.CRS.Simple,
+    center: [2174.5, 2500],
+    zoom: -2.7,
+    minZoom: -3,
+    maxZoom: -1,
+    layers: [baseMap, houses, landmarks, jobs],
+  });
+
+  const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+  map.fitBounds(bounds);
+
+  // handle popups
+  var popup = L.popup();
+
+  function onMapClick(e) {
+    popup
+      .setLatLng(e.latlng)
+      .setContent('You clicked the map at ' + e.latlng.toString())
+      .openOn(map);
+  }
+
+  map.on('click', onMapClick);
+</script>

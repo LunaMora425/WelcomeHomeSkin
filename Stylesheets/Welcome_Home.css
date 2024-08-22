@@ -2954,6 +2954,10 @@ a:hover {
  text-decoration: none;
 }
 
+a:not([name]):empty:not(#map a) {
+ display: none;
+}
+
 /****************************************
     UserCP/My Controls styles
  *****************************************/
@@ -4798,5 +4802,15 @@ span.dave:hover {
  }
  100% {
   transform: none;
+ }
+}
+
+@media print {
+ #mobilenav {
+  display: none;
+ }
+
+ .ic-tracker-area {
+  display: none;
  }
 }
